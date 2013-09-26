@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+
+require 'prophecy/cli'
+Prophecy::CLI.start
