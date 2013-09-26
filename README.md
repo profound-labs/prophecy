@@ -1,6 +1,8 @@
 Prophecy Book Boilerplate
 =========================
 
+**WORK IN PROGRESS. The code is being re-organized as a ruby gem.**
+
 Book boilerplate to generate books as EPUB, MOBI, and PDF from simple
 Markdown text files. Embedded fonts and CSS typography for the ebooks,
 and a pretty LaTeX documentclass for the PDF.
