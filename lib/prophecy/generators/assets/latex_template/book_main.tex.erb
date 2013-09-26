@@ -1,0 +1,31 @@
+\documentclass[
+  final,
+  pagePreset=largepage,
+  babelLanguage=british,
+]{anecdote}
+
+%\usepackage{mylayout}
+
+%% Details of the book
+%% ===================
+
+\title{<%= book.title %>}
+\subtitle{<%= book.subtitle %>}
+\author{<%= book.author %>}
+\date{<%= book.date %>}
+\editionInfo{<%= book.edition %>}
+\ISBN{<%= book.isbn %>}
+
+%% === Load further packages ===
+
+%% === Hyphenation exceptions and corrections ===
+
+% \hyphenation{}
+
+\begin{document}
+
+<% book.chapters.each do |ch| %>
+<%= ch.to_chapterlist %>
+<% end %>
+
+\end{document}

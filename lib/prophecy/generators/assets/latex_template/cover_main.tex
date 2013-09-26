@@ -1,0 +1,48 @@
+\documentclass{article}
+
+\makeatletter
+
+\usepackage{calc}
+\newlength\onePageWidth
+\newlength\onePageHeight
+\newlength\spineWidth
+
+% pagesize: 5.25in x 8in
+% spinewidth: 9.374mm
+\setlength{\onePageWidth}{5.25in}
+\setlength{\onePageHeight}{8in}
+\setlength{\spineWidth}{9.374mm}
+
+\newlength\geoPaperWidth
+\setlength\geoPaperWidth{2\onePageWidth+\spineWidth}
+\newlength\frontCoverX
+\setlength\frontCoverX{\onePageWidth+\spineWidth}
+
+\usepackage[
+  paperwidth=\geoPaperWidth,
+  paperheight=\onePageHeight,
+  nohead,
+  nofoot,
+  margin=0pt]{geometry}
+\usepackage[cmyk]{xcolor}
+\usepackage{graphicx}
+\usepackage{eso-pic}
+\graphicspath{{./}}
+
+\makeatother
+
+\begin{document}
+\mbox{}
+%\pagecolor[RGB]{137, 101, 82}
+%
+\AddToShipoutPictureFG*{\put(\LenToUnit{0mm},\LenToUnit{0mm})%
+{\includegraphics[keepaspectratio, height=\paperheight]{cover_back.pdf}}}
+%
+\AddToShipoutPictureFG*{\put(\LenToUnit{\onePageWidth},\LenToUnit{0mm})%
+{\includegraphics[keepaspectratio, height=\paperheight]{cover_spine_L.pdf}}}
+%
+\AddToShipoutPictureFG*{\put(\LenToUnit{\frontCoverX},\LenToUnit{0mm})%
+{\includegraphics[keepaspectratio, height=\paperheight]{cover_front.pdf}}}
+%
+\end{document}
+

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<package xmlns="http://www.idpf.org/2007/opf" unique-identifier="<%= book.bookid %>" version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <metadata xmlns:opf="http://www.idpf.org/2007/opf" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+    <!-- ISBN -->
+    <% unless book.isbn.nil? %><dc:identifier id="<%= book.bookid %>" opf:scheme="ISBN">urn:isbn:<%= book.isbn %></dc:identifier><% end %>
+    <!-- UUID generator: http://www.famkruithof.net/uuid/uuidgen -->
+    <% unless book.uuid.nil? %><dc:identifier opf:scheme="UUID">urn:uuid:<%= book.uuid %></dc:identifier><% end %>
+
+    <dc:title><%= book.title %></dc:title>
+    <dc:rights><%= book.rights %></dc:rights>
+
+    <!-- BISAC Subject Headings List: http://www.bisg.org/what-we-do-0-136-bisac-subject-headings-list-major-subjects.php-->
+    <% unless book.subject.nil? %><dc:subject><%= book.subject %></dc:subject><% end %>
+
+    <dc:creator opf:file-as="<%= book.creator %>" opf:role="aut"><%= book.creator %></dc:creator>
+
+    <% unless book.source.nil? %><dc:source><%= book.source %></dc:source><% end %>
+
+    <!-- List of contributors
+
+         See: MARC Code List for Relators: http://www.loc.gov/marc/relators/relaterm.html
+
+         Examples:
+
+         * Editor [edt]
+           Use for a person or organization who prepares for publication a work not primarily his/her own,
+           such as by elucidating text, adding introductory or other critical matter, or technically directing
+           an editorial staff.
+
+         * Cover designer [cov]
+           Use for a person or organization responsible for the graphic design of a book cover,
+           album cover, slipcase, box, container, etc. For a person or organization responsible
+           for the graphic design of an entire book, use Book designer; for book jackets, use Bookjacket designer.
+
+         * Translator [trl]
+           Use for a person or organization who renders a text from one language into another, or from an older
+           form of a language into the modern form.
+
+         -->
+
+    <% unless book.contributors.nil? %>
+    <% book.contributors.each do |c| %>
+    <% role = c.first[0] %>
+    <% name = c.first[1] %>
+    <dc:contributor opf:file-as="<%= name %>" opf:role="<%= role %>"><%= book.personal_name_first(name) %></dc:contributor>
+    <% end %>
+    <% end %>
+
+    <% unless book.publisher.nil? %><dc:publisher><%= book.publisher %></dc:publisher><% end %>
+    <dc:date opf:event="publication"><%= book.date %></dc:date>
+
+    <!-- Language code: http://en.wikipedia.org/wiki/List_of_ISO_639-2_codes -->
+    <dc:language><%= book.lang_iso_639_2 %></dc:language>
+
+    <% unless book.cover_image.nil? %><meta name="cover" content="cover-image" /><% end %>
+
+  </metadata>
+
+  <!-- MANIFEST (mandatory)
+       List of all the resources of the book (XHTML, CSS, images,…).
+       The order of item elements in the manifest is NOT significant.
+
+       http://idpf.org/epub/20/spec/OPF_2.0.1_draft.htm#Section2.3 
+  -->
+
+  <manifest>
+    <% book.manifest.items.each do |item| %>
+    <item href="<%= item.href %>" id="<%= item.id %>" media-type="<%= item.media_type %>" />
+    <% end %>
+  </manifest>
+
+  <!-- SPINE (mandatory)
+
+       The spine element defines the default reading order of the content. It doesn't list every file in the manifest, 
+       just the reading order.
+
+       The value of the idref tag in the spine has to match the ID tag for that entry in the manifest.
+
+       For example, if you have the following reference in your manifest:
+
+          <item id="chapter-1" href="chapter01.xhtml" media-type="application/xhtml+xml" />
+
+       your spine entry would be:
+
+          <itemref idref="chapter-1" />
+
+       http://idpf.org/epub/20/spec/OPF_2.0.1_draft.htm#Section2.4
+
+       -->
+  <spine toc="ncx">
+    <% book.chapters.each do |ch| %>
+    <%= ch.to_spineitem %>
+    <% end %>
+  </spine>
+
+  <!-- GUIDE (optional, recommended by Apple)
+
+        The guide lets you specify the role of the book's files.
+
+        Available tags: cover, title-page, toc, index, glossary, acknowledgements, bibliography,
+        colophon, copyright-page, dedication, epigraph, foreword, loi (list of illustrations),
+        lot (list of tables), notes, preface, and text.
+
+        http://idpf.org/epub/20/spec/OPF_2.0.1_draft.htm#Section2.6
+
+       -->
+  <guide>
+    <% book.chapters.each do |ch| %>
+    <%= ch.to_guide_reference %>
+    <% end %>
+  </guide>
+
+</package>

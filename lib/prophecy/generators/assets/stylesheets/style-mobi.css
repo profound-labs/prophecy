@@ -1,0 +1,341 @@
+/* Byronic Ebook Style
+ *
+ * https://github.com/profound-labs/byronic
+ *
+ * Based on the ePub Zen Garden structure elements.
+ * http://epubzengarden.com/
+ *
+ * Released under the Creative Commons Attribution License.
+ * http://creativecommons.org/licenses/by/3.0/ */
+/* line 18, ../sass/_byronic.sass */
+#content {
+  font-family: "SourceSansPro", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", "Tahoma", "Palatino", "Caecilia", sans-serif;
+  font-weight: normal;
+  line-height: 1.5em;
+  padding: 22px;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+/* line 29, ../sass/_byronic.sass */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: normal;
+  font-family: "SourceSansPro", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", "Tahoma", "Palatino", "Caecilia", sans-serif;
+  page-break-after: avoid;
+}
+
+/* line 34, ../sass/_byronic.sass */
+h1, h2 {
+  text-align: left;
+  text-transform: uppercase;
+  padding-top: 10px;
+}
+
+/* line 41, ../sass/_byronic.sass */
+h1 {
+  font-size: 2em;
+  margin: 10px -22px 20px 1.2em;
+  padding-right: 22px;
+  padding-bottom: 0;
+  letter-spacing: 1.2pt;
+  line-height: 0.95em;
+  border-bottom: 1px solid #656565;
+  /* The chapter headings contain two spans with these classes:
+   * chapter-name (always contains the word "Chapter") and
+   * chapter-number (as a roman numeral) */
+}
+/* line 52, ../sass/_byronic.sass */
+h1 .chapter-name {
+  font-weight: normal;
+}
+/* line 54, ../sass/_byronic.sass */
+h1 .chapter-number {
+  font-size: 0.8em;
+  letter-spacing: 0.1em;
+}
+
+/* line 58, ../sass/_byronic.sass */
+h2 {
+  font-size: 1.5em;
+  font-weight: 300;
+  line-height: 1.05em;
+  margin-bottom: 0.25em;
+  letter-spacing: 1pt;
+}
+
+/* line 65, ../sass/_byronic.sass */
+h3, h4 {
+  font-weight: bold;
+  text-transform: none;
+  margin-bottom: 0.1em;
+}
+
+/* line 70, ../sass/_byronic.sass */
+a {
+  color: #323232;
+}
+
+/* The main title page of the book.
+ * h1 - title
+ * h2 - subtitle
+ * h3 - author */
+/* For pages annoncing "Part I" or "Book VI"
+ * h1 - Part I
+ * h2 - part title
+ * h3 - part subtitle */
+/* line 85, ../sass/_byronic.sass */
+#content.title-page p,
+#content.part-page p {
+  text-align: right;
+  padding-right: 25px;
+}
+/* line 88, ../sass/_byronic.sass */
+#content.title-page h1, #content.title-page h2, #content.title-page h3,
+#content.part-page h1,
+#content.part-page h2,
+#content.part-page h3 {
+  font-family: "ExistenceLight";
+  text-align: right;
+  text-transform: none;
+}
+/* line 92, ../sass/_byronic.sass */
+#content.title-page h1, #content.title-page h2,
+#content.part-page h1,
+#content.part-page h2 {
+  letter-spacing: 1.5pt;
+}
+/* line 94, ../sass/_byronic.sass */
+#content.title-page h1,
+#content.part-page h1 {
+  font-size: 2.8em;
+  text-transform: uppercase;
+  margin-top: 0;
+  margin-bottom: 0.2em;
+  padding-top: 2em;
+  padding-right: 47px;
+  line-height: 1em;
+}
+/* line 102, ../sass/_byronic.sass */
+#content.title-page h2,
+#content.part-page h2 {
+  font-size: 2.2em;
+  margin-top: 0;
+  margin-bottom: 0.3em;
+  padding-top: 0.3em;
+  padding-right: 25px;
+}
+/* line 108, ../sass/_byronic.sass */
+#content.title-page h3,
+#content.part-page h3 {
+  font-size: 1.5em;
+  margin-bottom: 3em;
+  padding-right: 25px;
+}
+
+/* line 113, ../sass/_byronic.sass */
+div.title-page-rule {
+  height: 40px;
+  margin-left: -22px;
+  margin-right: -22px;
+  background-color: #cbcbcb;
+  text-align: right;
+  padding-right: 25px;
+}
+
+/* line 121, ../sass/_byronic.sass */
+div.publisher-logo {
+  float: right;
+  clear: right;
+  margin-top: 5px;
+  margin-right: 15px;
+  padding-bottom: 20px;
+}
+
+/* line 129, ../sass/_byronic.sass */
+table.toc td.section {
+  text-align: right;
+  color: #323232;
+}
+/* line 133, ../sass/_byronic.sass */
+table.toc td.title a {
+  text-decoration: none;
+  color: #1a1a1a;
+}
+/* line 136, ../sass/_byronic.sass */
+table.toc td.title.frontmatter, table.toc td.title.backmatter {
+  font-style: italic;
+}
+/* line 139, ../sass/_byronic.sass */
+table.toc td.separator {
+  width: 30px;
+  text-align: center;
+  font-size: 2em;
+  color: #7f7f7f;
+}
+
+/* Epigraphs at the beginning of each chapter are in blockquotes */
+/* line 146, ../sass/_byronic.sass */
+h1 + blockquote,
+blockquote.epigraph {
+  margin-left: 4em;
+  margin-right: 1em;
+  font-size: 0.9em;
+  font-style: italic;
+}
+/* line 152, ../sass/_byronic.sass */
+h1 + blockquote p,
+blockquote.epigraph p {
+  text-indent: 0;
+  padding-top: 0;
+  margin-top: 2pt;
+}
+
+/* The attribution of the blockquote is a span */
+/* line 158, ../sass/_byronic.sass */
+span.attribution,
+p.attribution {
+  display: block;
+  text-align: right;
+  font-size: 0.8em;
+}
+
+/* ...which also contains an attribution-name, wrapping the name of
+ * the person who made the quotation */
+/* line 166, ../sass/_byronic.sass */
+span.attribution-name,
+p.attribution-name {
+  text-align: right;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-style: normal;
+}
+
+/* Outside of the content area you can address the style of the
+ * running book and author headings. */
+/* line 175, ../sass/_byronic.sass */
+#content-title {
+  text-align: right;
+  font-size: 0.8em;
+}
+
+/* line 183, ../sass/_byronic.sass */
+p {
+  text-indent: 1.7em;
+  margin-top: 2pt;
+  padding-top: 0;
+  text-align: justify;
+}
+
+/* The first paragraph in the work has a class called "noindent" which
+ * suppresses any paragraph indentation applied by default, but you
+ * can override this. */
+/* line 192, ../sass/_byronic.sass */
+h1 + p, h2 + p, h3 + p, h4 + p,
+h1 + blockquote + p,
+blockquote.epigraph + p,
+p.first,
+p.noindent {
+  text-indent: 0;
+}
+
+/* The first letter of the text is wrapped in a span with
+ * the class 'firstletter', which can be used for dropcaps. */
+/* Middlemarch contains a number of letters, which can be styled
+ * differently. */
+/* line 210, ../sass/_byronic.sass */
+#content p.letter {
+  padding-left: 1.5em;
+  padding-right: 0.5em;
+}
+
+/* Found in a letter */
+/* line 215, ../sass/_byronic.sass */
+#content p.salutation {
+  display: block;
+  font-variant: small-caps;
+}
+
+/* line 219, ../sass/_byronic.sass */
+#content p.closing {
+  display: block;
+  text-indent: 1em;
+}
+
+/* line 223, ../sass/_byronic.sass */
+div.page-break {
+  page-break-after: always;
+}
+
+/* line 226, ../sass/_byronic.sass */
+.page-break-after {
+  page-break-after: always;
+}
+
+/* line 229, ../sass/_byronic.sass */
+.page-break-before {
+  page-break-before: always;
+}
+
+/* line 232, ../sass/_byronic.sass */
+pre {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+/* line 236, ../sass/_byronic.sass */
+.small {
+  font-size: 0.9em;
+}
+
+/* line 239, ../sass/_byronic.sass */
+.tiny {
+  font-size: 0.8em;
+}
+
+/* line 242, ../sass/_byronic.sass */
+.noborder {
+  border: none;
+}
+
+/* line 2, ../sass/_wasteland.scss */
+.linegroup {
+  margin-top: 1.6em;
+}
+
+/* line 6, ../sass/_wasteland.scss */
+span.lnum {
+  float: right;
+  color: #323232;
+  font-size: 90%;
+}
+
+/* line 12, ../sass/_wasteland.scss */
+a.noteref {
+  color: #656565;
+  text-decoration: none;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+}
+
+/* line 19, ../sass/_wasteland.scss */
+#rearnotes a {
+  color: black;
+  text-decoration: none;
+  border-bottom: 1px dotted #323232;
+  margin-right: 0.8em;
+}
+
+/* line 26, ../sass/_wasteland.scss */
+.indent {
+  padding-left: 3em;
+}
+
+/* line 30, ../sass/_wasteland.scss */
+.indent2 {
+  padding-left: 5em;
+}
+
+/* line 34, ../sass/_wasteland.scss */
+.dedication {
+  padding-left: 2em;
+}

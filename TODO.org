@@ -1,0 +1,15 @@
+
+Why is KindleGen producing 2x as epub? try compression settings
+
+diff assets/lib agains wolves
+
+in latex:compile run latex as many times as needed automatically
+
+in book.yml, pretend that levels index from 1
+
+add .erb template for part pages
+
+sample content w/ Part and subsections, prose and verse
+
+? add one or two Rspec tests
+

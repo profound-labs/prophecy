@@ -1,4 +1,4 @@
-*.swp
+**.swp
 *.gem
 *.rbc
 .bundle
@@ -16,3 +16,4 @@ spec/reports
 test/tmp
 test/version_tmp
 tmp
+TODO.org

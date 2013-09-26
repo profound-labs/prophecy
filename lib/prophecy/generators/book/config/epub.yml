@@ -1,0 +1,4 @@
+
+assets: [ './assets/webfonts/', './assets/images/', './assets/stylesheets/' ]
+
+exclude_assets: [ 'ie.css', 'print.css', 'style-mobi.css', '*.swp', '.gitkeep' ]

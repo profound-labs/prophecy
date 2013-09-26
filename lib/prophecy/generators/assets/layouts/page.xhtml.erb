@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<%= book.lang_iso_639_2 %>" lang="<%= book.lang_iso_639_2 %>">
+  <head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <title><%= chapter.title %></title>
+    <% if book.mobi? %>
+      <link href="../stylesheets/style-mobi.css" media="amzn-mobi" rel="stylesheet" type="text/css" />
+      <link href="../stylesheets/style-mobi-kf8.css" media="amzn-kf8" rel="stylesheet" type="text/css" />
+    <% elsif book.epub? %>
+      <link href="../stylesheets/style-epub.css" media="all, screen" rel="stylesheet" type="text/css" />
+    <% end %>
+  </head>
+  <body id="content" class="<%= chapter.class %>">
+    <div id="<%= chapter.id %>" xml:lang="<%= chapter.lang %>">
+      <%= content %>
+    </div>
+  </body>
+</html>
+

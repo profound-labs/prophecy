@@ -36,5 +36,19 @@ the rest.
 
 ## Inspried by
 
-[bookshop](https://github.com/blueheadpublishing/bookshop), [kitabu](https://github.com/fnando/kitabu), and Ryan Bigg's [gem building guide](https://github.com/radar/guides/blob/master/gem-development.md).
+[bookshop](https://github.com/blueheadpublishing/bookshop), [kitabu](https://github.com/fnando/kitabu), and the [gem guide](https://github.com/radar/guides/blob/master/gem-development.md).
+
+## PDF
+
+* LaTeX
+* Typography: anecdote
+* Fonts: Gentium and Crimson Text
+* ready for press
+
+## EPUB and MOBI
+
+* CSS Style: Byronic
+* fonts: Source Sans Pro and Existence Light
+* goodness from epub-samples and epub-boilerplate
+* mobi with KindleGen
 

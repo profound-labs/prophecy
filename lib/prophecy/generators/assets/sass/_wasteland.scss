@@ -1,0 +1,37 @@
+
+.linegroup {
+    margin-top: 1.6em;
+}
+
+span.lnum {
+    float: right;
+    color: $gray;
+    font-size : 90%;
+}
+
+a.noteref {
+    color: $lightGray;
+    text-decoration: none;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+}
+
+#rearnotes a {
+    color: black;
+    text-decoration: none;
+    border-bottom : 1px dotted $gray;
+    margin-right: 0.8em;
+}
+
+.indent {
+    padding-left: 3em;
+}
+
+.indent2 {
+    padding-left: 5em;
+}
+
+.dedication {
+  padding-left: 2em;
+}
+

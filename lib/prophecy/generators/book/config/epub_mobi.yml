@@ -1,0 +1,26 @@
+
+# Epub and Mobi
+# =============
+
+bookid: "VolumeOneBookId"
+
+# ISBN for the ebook editions
+isbn: "000-0-000000-00-0"
+
+# BISAC Subject Headings List:
+# http://www.bisg.org/what-we-do-0-136-bisac-subject-headings-list-major-subjects.php
+
+#subject: LIST / OF / SUBJECTS
+#source: http://www.source.org/
+
+# MARC Code List for Relators:
+# Editor [edt], Cover designer [cov], Translator [trl],
+# Book designer [bkd]
+# http://www.loc.gov/marc/relators/relaterm.html
+
+#contributors:
+#  - edt: Lastname, Name
+#  - edt: Other Lastname, Name
+#  - cov: Lastname, Name
+#  - trl: Lastname, Name
+
