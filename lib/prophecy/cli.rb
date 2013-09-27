@@ -58,7 +58,7 @@ module Prophecy
       @config['template_dir'] ||= './assets/epub_template/'
       @config['build_dir'] ||= './build/epub/'
 
-      VolumeOne::Book.new(@config)
+      Prophecy::Book.new(@config)
     end
 
     def mobi_init_book
@@ -72,7 +72,7 @@ module Prophecy
       @config['template_dir'] ||= './assets/epub_template/'
       @config['build_dir'] ||= './build/mobi/'
 
-      VolumeOne::Book.new(@config)
+      Prophecy::Book.new(@config)
     end
 
     def latex_init_book
@@ -85,7 +85,7 @@ module Prophecy
       @config['template_dir'] ||= './assets/latex_template/'
       @config['build_dir'] ||= './build/latex/'
 
-      @book = VolumeOne::Book.new(@config)
+      @book = Prophecy::Book.new(@config)
     end
 
     def compile_assets
