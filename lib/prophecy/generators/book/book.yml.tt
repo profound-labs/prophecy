@@ -1,0 +1,15 @@
+
+# General Config
+# ==============
+
+# The data in this file is shared between output formats.
+# Format-specific data and settings go in the config/*.yml files.
+
+title: "<%= title %>"
+subtitle: "It's a subtle difference"
+author: The Author
+creator: The Author
+rights: "Copyright © YEAR COPYRIGHT HOLDER. This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported Licence."
+version: v0.1
+date: <%= Time.now.strftime("%Y-%m-%d") %>
+

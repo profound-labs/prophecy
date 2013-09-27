@@ -13,25 +13,25 @@ module Prophecy
       puts "Title: who knows?"
     end
 
-    desc "new bookname", "start a new book project"
-    def new(bookname)
-      Prophecy::Generators::New.start([bookname, ])
+    desc "new TITLE", "start a new book project"
+    def new(title)
+      Prophecy::Generators::New.start([title, ])
     end
 
-    desc "epub", "generate EPUB"
-    def epub
-      Prophecy::Book.build_epub_mobi("epub")
-    end
+    #desc "epub", "generate EPUB"
+    #def epub
+    #  Prophecy::Book.build_epub_mobi("epub")
+    #end
 
-    desc "mobi", "generate MOBI"
-    def mobi
-      Prophecy::Book.build_epub_mobi("mobi")
-    end
+    #desc "mobi", "generate MOBI"
+    #def mobi
+    #  Prophecy::Book.build_epub_mobi("mobi")
+    #end
 
-    desc "pdf", "generate PDF"
-    def pdf
-      Prophecy::Book.build_latex
-    end
+    #desc "pdf", "generate PDF"
+    #def pdf
+    #  Prophecy::Book.build_latex
+    #end
 
   end
 
