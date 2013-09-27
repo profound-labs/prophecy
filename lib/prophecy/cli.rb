@@ -35,21 +35,61 @@ module Prophecy
       system "cd #{@book.build_dir} && zip -rg #{path} OEBPS"
     end
 
-    #desc "mobi", "generate MOBI"
-    #def mobi
-    #  Prophecy::Book.build_epub_mobi("mobi")
-    #end
+    desc "mobi", "generate MOBI with Kindlegen"
+    def mobi
+      @config = YAML::load(IO.read('book.yml'))
+      # Local assets dir in book project folder
+      compile_assets if Dir.exists?('./assets') && @assets_dir == File.join('.', 'assets')
+      @book = mobi_init_book
+      clean_dir(@book.build_dir)
+      @book.generate_build
 
-    #desc "pdf", "generate PDF"
-    #def pdf
-    #  Prophecy::Book.build_latex
-    #end
+      # Compile Epub with Zip for conversion with kindlegen
+      path = File.expand_path("./#{@book.compile_name}.epub")
+      system "cd #{@book.build_dir} && zip -X #{path} mimetype"
+      system "cd #{@book.build_dir} && zip -rg #{path} META-INF"
+      system "cd #{@book.build_dir} && zip -rg #{path} OEBPS"
+
+      # Kindlegen
+      #system "kindlegen '#{@book.compile_name}.epub' -c2 -o '#{@book.compile_name}.mobi'"
+      #system "mv '#{@book.compile_name}.mobi' ./publish/mobi/"
+      #system "rm '#{@book.compile_name}.epub'"
+    end
+
+    desc "pdf", "generate PDF with LaTeX"
+    def pdf
+      @config = YAML::load(IO.read('book.yml'))
+      @book = latex_init_book
+      clean_dir(@book.build_dir)
+      @book.generate_build
+      system "cd #{@book.build_dir} && make"
+    end
+
+    desc "to_markdown", "convert .tex files to markdown"
+    def to_markdown
+      @book = latex_init_book
+
+      Dir[File.join(@book.tex_dir, '*.tex')].each do |f|
+        dest = File.expand_path(File.join(@book.markdown_dir, File.basename(f).sub(/\.tex$/, '.md')))
+        if File.exist?(dest)
+          print "WARNING: destination exists: #{dest}\nOverwrite? [yN] "
+          a = STDIN.gets.chomp()
+          if a.downcase != 'y'
+            puts "OK, skipping file"
+            next
+          end
+        end
+        r = system "/bin/bash #{File.join(@book.assets_dir, 'helpers/tex2md.sh')} '#{File.expand_path(f)}' '#{dest}'"
+        warn "WARNING: tex2md.sh returned non-zero for #{f}" unless r
+      end
+    end
 
     private
 
     def epub_init_book
-      [ './config/epub_mobi.yml',
-        './config/epub.yml' ].each do |c|
+      [ './epub_mobi.yml',
+        './epub.yml' ].each do |c|
+        next if !File.exists?(c)
         h = YAML::load(IO.read(c))
         @config.merge!(h) if h
       end
@@ -59,8 +99,9 @@ module Prophecy
     end
 
     def mobi_init_book
-      [ './config/epub_mobi.yml',
-        './config/mobi.yml' ].each do |c|
+      [ './epub_mobi.yml',
+        './mobi.yml' ].each do |c|
+        next if !File.exists?(c)
         h = YAML::load(IO.read(c))
         @config.merge!(h) if h
       end
@@ -70,7 +111,8 @@ module Prophecy
     end
 
     def latex_init_book
-      [ './config/latex.yml', ].each do |c|
+      [ './latex.yml', ].each do |c|
+        next if !File.exists?(c)
         h = YAML::load(IO.read(c))
         @config.merge!(h) if h
       end

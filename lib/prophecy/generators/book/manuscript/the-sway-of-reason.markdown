@@ -4,7 +4,7 @@
 > "I have seen the dark universe yawning\\
 > Where the black planets roll without aim,\\
 > Where they roll in their horror unheeded,\\
-> > without knowledge or lustre or name."
+> without knowledge or lustre or name."
 >
 > -- *Nemesis*
 

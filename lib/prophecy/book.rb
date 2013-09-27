@@ -8,9 +8,10 @@ module Prophecy
     attr_reader :title, :subtitle, :author, :publisher, :publisher_atag,
       :publisher_logo, :book_atag, :isbn, :uuid, :version, :edition,
       :lang, :lang_iso_639_2, :build_dir, :template_dir, :layouts_dir,
-      :assets_dir, :chapter_layout, :include_assets, :exclude_assets,
-      :toc, :output_format, :bookid, :rights, :creator, :subject,
-      :source, :contributors, :cover_image, :date, :compile_name
+      :assets_dir, :tex_dir, :markdown_dir, :xhtml_dir, :chapter_layout,
+      :include_assets, :exclude_assets, :toc, :output_format, :bookid,
+      :rights, :creator, :subject, :source, :contributors, :cover_image,
+      :date, :compile_name
 
     def initialize(config)
       @config = config.clone
@@ -59,7 +60,7 @@ module Prophecy
       if @toc
         @toc.each do |ch|
           if ch.is_a?(String)
-            ch = { src: ch }
+            ch = { 'src' => ch }
           end
 
           if ch.has_key?('target')

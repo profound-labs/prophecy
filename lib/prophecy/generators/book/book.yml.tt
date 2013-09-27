@@ -3,7 +3,8 @@
 # ==============
 
 # The data in this file is shared between output formats.
-# Format-specific data and settings go in the config/*.yml files.
+# Add format-specific data in:
+# epub_mobi.yml, epub.yml, mobi.yml, latex.yml
 
 # These are very minimal settings, for a more complete example see
 # example-book.yml

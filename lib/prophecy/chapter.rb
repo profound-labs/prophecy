@@ -197,7 +197,7 @@ module Prophecy
       case format
       when '.html', '.xhtml'
         ret = text
-      when '.md'
+      when '.md', '.mkd', '.markdown'
         ret = Kramdown::Document.new(text).to_html
       when '.tex'
         File.open('./temp-chapter.tex', 'w'){|f| f << text }
