@@ -1,6 +1,6 @@
 
-#require 'pry'
-#require 'pry-debugger'
+require 'pry'
+require 'pry-debugger'
 
 require 'fileutils'
 require 'pathname'

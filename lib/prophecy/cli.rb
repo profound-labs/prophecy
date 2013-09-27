@@ -51,9 +51,10 @@ module Prophecy
       system "cd #{@book.build_dir} && zip -rg #{path} OEBPS"
 
       # Kindlegen
-      #system "kindlegen '#{@book.compile_name}.epub' -c2 -o '#{@book.compile_name}.mobi'"
-      #system "mv '#{@book.compile_name}.mobi' ./publish/mobi/"
-      #system "rm '#{@book.compile_name}.epub'"
+      binpath = File.expand_path(File.join(__FILE__, '..', '..', '..', 'bin/kindlegen'))
+      system "#{binpath} '#{@book.compile_name}.epub'"
+      system "mv '#{@book.compile_name}.mobi' ./publish/mobi/"
+      system "rm '#{@book.compile_name}.epub'"
     end
 
     desc "pdf", "generate PDF with LaTeX"

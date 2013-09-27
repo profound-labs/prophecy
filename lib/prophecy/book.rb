@@ -22,10 +22,11 @@ module Prophecy
       @title          = c['title']          || "The Title"
       @subtitle       = c['subtitle']       || nil
       @author         = c['author']         || "The Author"
+      @creator        = c['creator']        || @author
       @publisher      = c['publisher']      || nil
       @publisher_atag = c['publisher_atag'] || nil
       @publisher_logo = c['publisher_logo'] || nil
-      @book_atag       = c['book_atag']     || nil
+      @book_atag      = c['book_atag']      || nil
       @isbn           = c['isbn']           || nil
       @uuid           = c['uuid']           || nil
       @version        = c['version']        || 'v0.1'
@@ -40,17 +41,16 @@ module Prophecy
       @template_dir   = c['template_dir']   || find_template_dir
       @layouts_dir    = c['layouts_dir']    || File.join(@assets_dir, 'layouts')
       @chapter_layout = c['chapter_layout'] || 'page.xhtml.erb'
-      @include_assets = c['include_assets'] || format_include_assets
-      @exclude_assets = c['exclude_assets'] || format_exclude_assets
+      @include_assets = format_include_assets(c['include_assets'])
+      @exclude_assets = format_exclude_assets(c['exclude_assets'])
       @toc            = c['toc']            || nil
       @bookid         = c['bookid']         || nil
       @rights         = c['rights']         || nil
-      @creator        = c['creator']        || nil
       @subject        = c['subject']        || nil
       @source         = c['source']         || nil
       @contributors   = c['contributors']   || nil
       @cover_image    = c['cover_image']    || nil
-      @date           = c['date']           || nil
+      @date           = c['date']           || Time.now.strftime("%Y-%m-%d")
 
       @compile_name = "#{self.author}-#{self.title}-#{Time.now.strftime("%FT%T")}".gsub(/[^a-zA-Z0-9-]/, '-').gsub(/--*/, '-')
 
@@ -231,27 +231,39 @@ module Prophecy
       end
     end
 
-    def format_include_assets
+    def format_include_assets(config_include)
       case (self.output_format)
       when 'epub', 'mobi'
-        [
+        inc = [
           File.join(self.assets_dir, 'webfonts'),
-          File.join(self.assets_dir, 'images'),
+          File.join('.', 'images'),
           File.join(self.assets_dir, 'stylesheets')
         ]
       when 'latex'
-        []
+        inc = []
+      end
+
+      if config_include.nil?
+        inc
+      else
+        inc.concat(config_include).uniq
       end
     end
 
-    def format_exclude_assets
+    def format_exclude_assets(config_exclude)
       case (self.output_format)
       when 'epub'
-        [ 'ie.css', 'print.css', 'style-mobi.css', '*.swp', '.gitkeep' ]
+        ex = [ 'ie.css', 'print.css', 'style-mobi.css', '*.swp', '.gitkeep' ]
       when 'mobi'
-        [ 'ie.css', 'print.css', 'style-epub.css', '*.swp', '.gitkeep' ]
+        ex = [ 'ie.css', 'print.css', 'style-epub.css', '*.swp', '.gitkeep' ]
       when 'latex'
-        []
+        ex = []
+      end
+
+      if config_exclude.nil?
+        ex
+      else
+        ex.concat(config_exclude).uniq
       end
     end
 

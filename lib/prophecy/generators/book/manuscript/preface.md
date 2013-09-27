@@ -1,5 +1,5 @@
 
 # Preface
 
-Preparing the reader for the worst.
+Preparing your readers for the worst.
 

@@ -1,0 +1,31 @@
+
+<h1><%= book.title %></h1>
+<% unless book.subtitle.nil? %><h2><%= book.subtitle %></h2><% end %>
+<h3>by <%= book.author %></h3>
+
+<div class="title-page-rule"></div>
+
+<table border="0" cellspacing="0" cellpadding="0" style="width: 100%; text-align: right;">
+  <tbody>
+    <tr>
+      <td>
+        <p class="footnotesize" style="font-style: italic;">
+        <% unless book.publisher.nil? %>
+        Published by <%= book.publisher %>: <%= book.publisher_atag %><br/>
+        <% end %>
+        <% unless book.book_atag.nil? %>
+        Find out more about this book at: <%= book.book_atag %>
+        <% end %>
+        </p>
+      </td>
+      <td>
+        <% unless book.publisher_logo.nil? %>
+        <div class="publisher-logo"><img src="../images/<%= book.publisher_logo %>" alt="logo"/></div>
+        <% end %>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+

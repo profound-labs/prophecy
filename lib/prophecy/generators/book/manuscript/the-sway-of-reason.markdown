@@ -6,7 +6,8 @@
 > Where they roll in their horror unheeded,\\
 > without knowledge or lustre or name."
 >
-> -- *Nemesis*
+> Nemesis, 1917
+> {:.attribution}
 
 Yet now the sway of reason seemed irrefutably shaken, for this Cyclopean maze
 of squared, curved, and angled blocks had features which cut off all

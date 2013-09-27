@@ -34,12 +34,11 @@ h1, h2 {
 /* line 41, ../sass/_byronic.sass */
 h1 {
   font-size: 2em;
-  margin: 10px -22px 20px 1.2em;
-  padding-right: 22px;
+  margin: 0.5em 0 1em 0px;
+  padding-right: 0;
   padding-bottom: 0;
   letter-spacing: 1.2pt;
   line-height: 0.95em;
-  border-bottom: 1px solid #656565;
   /* The chapter headings contain two spans with these classes:
    * chapter-name (always contains the word "Chapter") and
    * chapter-number (as a roman numeral) */
@@ -87,7 +86,7 @@ a {
 #content.title-page p,
 #content.part-page p {
   text-align: right;
-  padding-right: 25px;
+  padding-right: 0px;
 }
 /* line 88, ../sass/_byronic.sass */
 #content.title-page h1, #content.title-page h2, #content.title-page h3,
@@ -107,39 +106,39 @@ a {
 /* line 94, ../sass/_byronic.sass */
 #content.title-page h1,
 #content.part-page h1 {
-  font-size: 2.8em;
+  font-size: 2em;
   text-transform: uppercase;
   margin-top: 0;
   margin-bottom: 0.2em;
   padding-top: 2em;
-  padding-right: 47px;
+  padding-right: 0px;
   line-height: 1em;
 }
 /* line 102, ../sass/_byronic.sass */
 #content.title-page h2,
 #content.part-page h2 {
-  font-size: 2.2em;
+  font-size: 1.5em;
   margin-top: 0;
   margin-bottom: 0.3em;
   padding-top: 0.3em;
-  padding-right: 25px;
+  padding-right: 0px;
 }
 /* line 108, ../sass/_byronic.sass */
 #content.title-page h3,
 #content.part-page h3 {
-  font-size: 1.5em;
+  font-size: 1.2em;
   margin-bottom: 3em;
-  padding-right: 25px;
+  padding-right: 0px;
 }
 
 /* line 113, ../sass/_byronic.sass */
 div.title-page-rule {
   height: 40px;
-  margin-left: -22px;
-  margin-right: -22px;
+  margin-left: 0;
+  margin-right: 0;
   background-color: #cbcbcb;
   text-align: right;
-  padding-right: 25px;
+  padding-right: 0px;
 }
 
 /* line 121, ../sass/_byronic.sass */
@@ -177,12 +176,13 @@ table.toc td.separator {
 /* line 146, ../sass/_byronic.sass */
 h1 + blockquote,
 blockquote.epigraph {
-  margin-left: 4em;
   margin-right: 1em;
+  margin-top: 0.3em;
+  margin-bottom: 1em;
   font-size: 0.9em;
   font-style: italic;
 }
-/* line 152, ../sass/_byronic.sass */
+/* line 154, ../sass/_byronic.sass */
 h1 + blockquote p,
 blockquote.epigraph p {
   text-indent: 0;
@@ -190,46 +190,60 @@ blockquote.epigraph p {
   margin-top: 2pt;
 }
 
-/* The attribution of the blockquote is a span */
-/* line 158, ../sass/_byronic.sass */
+/* line 159, ../sass/_byronic.sass */
+blockquote {
+  border-left: 1px solid #989898;
+  padding: 0.3em 0 0.3em 1em;
+}
+
+/* line 163, ../sass/_byronic.sass */
+#content.verse blockquote {
+  font-style: normal;
+  font-size: 1em;
+  border-left-style: none;
+}
+
+/* The attribution of the blockquote */
+/* line 169, ../sass/_byronic.sass */
 span.attribution,
 p.attribution {
   display: block;
-  text-align: right;
+  text-align: left;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
   font-size: 0.8em;
+  font-style: normal;
 }
 
 /* ...which also contains an attribution-name, wrapping the name of
  * the person who made the quotation */
-/* line 166, ../sass/_byronic.sass */
+/* line 180, ../sass/_byronic.sass */
 span.attribution-name,
 p.attribution-name {
-  text-align: right;
+  text-align: left;
   text-transform: uppercase;
   letter-spacing: 0.1em;
+  font-size: 0.8em;
   font-style: normal;
 }
 
 /* Outside of the content area you can address the style of the
  * running book and author headings. */
-/* line 175, ../sass/_byronic.sass */
+/* line 190, ../sass/_byronic.sass */
 #content-title {
   text-align: right;
   font-size: 0.8em;
 }
 
-/* line 183, ../sass/_byronic.sass */
+/* line 198, ../sass/_byronic.sass */
 p {
-  text-indent: 1.7em;
-  margin-top: 2pt;
-  padding-top: 0;
   text-align: justify;
 }
 
 /* The first paragraph in the work has a class called "noindent" which
  * suppresses any paragraph indentation applied by default, but you
  * can override this. */
-/* line 192, ../sass/_byronic.sass */
+/* line 208, ../sass/_byronic.sass */
 h1 + p, h2 + p, h3 + p, h4 + p,
 h1 + blockquote + p,
 blockquote.epigraph + p,
@@ -242,100 +256,62 @@ p.noindent {
  * the class 'firstletter', which can be used for dropcaps. */
 /* Middlemarch contains a number of letters, which can be styled
  * differently. */
-/* line 210, ../sass/_byronic.sass */
+/* line 226, ../sass/_byronic.sass */
 #content p.letter {
   padding-left: 1.5em;
   padding-right: 0.5em;
 }
 
 /* Found in a letter */
-/* line 215, ../sass/_byronic.sass */
+/* line 231, ../sass/_byronic.sass */
 #content p.salutation {
   display: block;
   font-variant: small-caps;
 }
 
-/* line 219, ../sass/_byronic.sass */
+/* line 235, ../sass/_byronic.sass */
 #content p.closing {
   display: block;
   text-indent: 1em;
 }
 
-/* line 223, ../sass/_byronic.sass */
+/* line 239, ../sass/_byronic.sass */
 div.page-break {
   page-break-after: always;
 }
 
-/* line 226, ../sass/_byronic.sass */
+/* line 242, ../sass/_byronic.sass */
 .page-break-after {
   page-break-after: always;
 }
 
-/* line 229, ../sass/_byronic.sass */
+/* line 245, ../sass/_byronic.sass */
 .page-break-before {
   page-break-before: always;
 }
 
-/* line 232, ../sass/_byronic.sass */
+/* line 248, ../sass/_byronic.sass */
 pre {
   margin-top: 1em;
   margin-bottom: 1em;
 }
 
-/* line 236, ../sass/_byronic.sass */
+/* line 252, ../sass/_byronic.sass */
 .small {
   font-size: 0.9em;
 }
 
-/* line 239, ../sass/_byronic.sass */
-.tiny {
+/* line 255, ../sass/_byronic.sass */
+.footnotesize {
   font-size: 0.8em;
 }
 
-/* line 242, ../sass/_byronic.sass */
+/* line 258, ../sass/_byronic.sass */
+.tiny {
+  font-size: 0.7em;
+}
+
+/* line 261, ../sass/_byronic.sass */
 .noborder {
   border: none;
-}
-
-/* line 2, ../sass/_wasteland.scss */
-.linegroup {
-  margin-top: 1.6em;
-}
-
-/* line 6, ../sass/_wasteland.scss */
-span.lnum {
-  float: right;
-  color: #323232;
-  font-size: 90%;
-}
-
-/* line 12, ../sass/_wasteland.scss */
-a.noteref {
-  color: #656565;
-  text-decoration: none;
-  margin-left: 0.5em;
-  margin-right: 0.5em;
-}
-
-/* line 19, ../sass/_wasteland.scss */
-#rearnotes a {
-  color: black;
-  text-decoration: none;
-  border-bottom: 1px dotted #323232;
-  margin-right: 0.8em;
-}
-
-/* line 26, ../sass/_wasteland.scss */
-.indent {
-  padding-left: 3em;
-}
-
-/* line 30, ../sass/_wasteland.scss */
-.indent2 {
-  padding-left: 5em;
-}
-
-/* line 34, ../sass/_wasteland.scss */
-.dedication {
-  padding-left: 2em;
 }
