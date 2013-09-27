@@ -7,13 +7,6 @@ module Prophecy
 
   class CLI < Thor
 
-    desc "title", "Print book title"
-    def title
-      @config = YAML::load(IO.read('book.yml'))
-      @book = epub_init_book
-      puts @book.title
-    end
-
     desc "new \"Title Of Book\"", "start a new book project"
     def new(title)
       Prophecy::Generators::New.start([title, ])
