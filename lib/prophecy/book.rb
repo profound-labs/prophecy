@@ -7,7 +7,7 @@ module Prophecy
 
     attr_reader :title, :subtitle, :author, :publisher, :publisher_atag,
       :publisher_logo, :book_atag, :isbn, :uuid, :version, :edition,
-      :lang, :lang_iso_639_2, :tex_dir, :markdown_dir, :xhtml_dir,
+      :lang, :lang_iso_639_2,
       :build_dir, :template_dir, :layouts_dir, :chapter_layout, :assets,
       :exclude_assets, :toc, :output_format, :bookid, :rights, :creator,
       :subject, :source, :contributors, :cover_image, :date,
@@ -31,12 +31,13 @@ module Prophecy
       @edition        = c['edition']        || nil
       @lang           = c['lang']           || 'en-GB'
       @lang_iso_639_2 = c['lang_iso_639_2'] || @lang.downcase.sub(/-.*$/, '')
-      @tex_dir        = c['tex_dir']        || './manuscript/tex/'
-      @markdown_dir   = c['markdown_dir']   || './manuscript/markdown/'
-      @xhtml_dir      = c['xhtml_dir']      || './manuscript/xhtml/'
+      @tex_dir        = c['tex_dir']        || find_format_dir('tex')
+      @markdown_dir   = c['markdown_dir']   || find_format_dir('markdown')
+      @xhtml_dir      = c['xhtml_dir']      || find_format_dir('xhtml')
       @build_dir      = c['build_dir']      || nil
       @template_dir   = c['template_dir']   || nil
-      @layouts_dir    = c['layouts_dir']    || './assets/layouts/'
+      @assets_dir     = c['assets_dir']     || find_assets_dir
+      @layouts_dir    = c['layouts_dir']    || File.join(@assets_dir, 'layouts')
       @chapter_layout = c['chapter_layout'] || 'page.xhtml.erb'
       @assets         = c['assets']         || []
       @exclude_assets = c['exclude_assets'] || []
@@ -71,6 +72,20 @@ module Prophecy
       end
     end
 
+    def generate_build
+      case self.output_format
+      when 'epub'
+        self.build_epub_mobi
+      when 'mobi'
+        self.build_epub_mobi
+      when 'latex'
+        self.build_latex
+      else
+        warn "Don't know how to build output format: " + self.output_format
+        raise "Unknown Output Format Error"
+      end
+    end
+
     def build_latex
       FileUtils.cp_r(File.join(@template_dir, '.'), @build_dir)
       FileUtils.cp_r(@assets, @build_dir)
@@ -99,10 +114,6 @@ module Prophecy
           File.open(ch.render_path, "w"){|f| f << ch.to_tex }
         end
       end
-    end
-
-    def build_web
-      puts "build_web"
     end
 
     def build_epub_mobi
@@ -150,7 +161,7 @@ module Prophecy
 
     def format_dir(src)
       case File.extname(src)
-      when '.md'
+      when '.md', '.mkd', '.markdown'
         self.markdown_dir
       when '.tex'
         self.tex_dir
@@ -196,6 +207,24 @@ module Prophecy
 
     def latex?
       self.output_format == 'latex'
+    end
+
+    def find_format_dir(format)
+      if Dir.exists?("./manuscript/#{format}/")
+        "./manuscript/#{format}/"
+      else
+        './manuscript/'
+      end
+    end
+
+    private
+
+    def find_assets_dir
+      if Dir.exists?('./assets/')
+        File.join('.', 'assets')
+      else
+        File.join(File.dirname(__FILE__), 'assets')
+      end
     end
 
   end

@@ -5,11 +5,20 @@
 # The data in this file is shared between output formats.
 # Format-specific data and settings go in the config/*.yml files.
 
+# These are very minimal settings, for a more complete example see
+# example-book.yml
+
 title: "<%= title %>"
-subtitle: "It's a subtle difference"
 author: The Author
-creator: The Author
-rights: "Copyright © YEAR COPYRIGHT HOLDER. This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported Licence."
-version: v0.1
 date: <%= Time.now.strftime("%Y-%m-%d") %>
+
+toc:
+  - { the_matter: frontmatter }
+  - preface.md
+  - { the_matter: mainmatter }
+  - the-sway-of-reason.markdown
+  - unhuman-massiveness.markdown
+  - nameless-labyrinth.markdown
+  - { the_matter: backmatter }
+  - glossary.md
 

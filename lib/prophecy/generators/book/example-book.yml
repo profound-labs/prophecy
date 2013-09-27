@@ -1,0 +1,78 @@
+
+# General
+# =======
+
+# The data in this file is shared between output formats. Custom data
+# and settings go in the config/*.yml files.
+
+title: "<%= bookname %>"
+subtitle: "It's a subtle difference"
+author: "The Author"
+creator: "The Author"
+rights: "Copyright © YEAR COPYRIGHT HOLDER. This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported Licence."
+version: "v0.1"
+date: "2013-01-01"
+
+# Language and region, ISO 639-1 and ISO 3166-1
+# http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
+# http://en.wikipedia.org/wiki/ISO_3166-1
+
+lang: "en-GB"
+
+# A general-purpose Table of Contents. Formats will be converted as
+# necessary. A specific TOC for an output format can be given in the
+# corresponding config/*.yml file.
+#
+# Types (roles): http://idpf.org/epub/20/spec/OPF_2.0.1_draft.htm#Section2.6
+
+# Level 1, 2, 3
+section_names: [ "Part", "Chapter", "Section" ]
+
+toc:
+  - { the_matter: frontmatter }
+  - { insert: "\\frontmatter*\n\\chapterstyle{frontmatter}", target: latex }
+  - { title: "Cover", src: 'cover.xhtml.erb', target: epub, layout: none, type: cover, linear: no }
+  - { title: "Title Page", src: 'titlepage.xhtml.erb', target: epub, type: title-page }
+  - { title: "Title Page", src: "titlepage.tex", target: latex }
+  - { title: "Contents", src: 'toc.xhtml.erb', target: epub, type: toc }
+  - { title: "Copyright", src: 'copyright.md', target: [ epub, mobi ], type: copyright-page }
+  - { title: "Copyright", src: 'copyright.tex', target: latex }
+  - { title: "Dedication", src: 'dedication.md', type: dedication }
+  - { insert: "\\cleartorecto\n\\tableofcontents*", target: latex }
+  - { title: "Preface", src: 'preface.tex', type: preface }
+  - { title: "Introduction", src: 'introduction.tex' }
+  - { title: "Editor's Note", src: 'editors-note.tex' }
+  - { title: "Title Page", src: 'titlepage.xhtml.erb', target: mobi, type: text, class: title-page }
+  - { title: "Contents", src: 'toc.xhtml.erb', target: mobi, type: toc }
+  - { the_matter: mainmatter, section_number: 3  }
+  - { insert: "\\mainmatter*\n\\book{\\thetitle}\n\\setcounter{chapter}{0}\n\\chapterstyle{mainmatter}", target: latex }
+  - { title: "Waiting for Death", src: 'book3.html', target: [ epub, mobi ], class: part-page }
+  - { level: 2, title: "Text Samples", src: 'text-samples.md' }
+  - { title: "The Dead Hand", src: 'book5.html', target: [ epub, mobi ], class: part-page }
+  - { level: 2, title: "The Waste Land", src: 'wasteland.xhtml', class: verse }
+  - { level: 3, title: "The Metamorphosis", src: 'metamorphosis.md' }
+  - { level: 3, title: "Nemesis, by H.P. Lovecraft", src: 'nemesis.md', class: verse }
+  - { insert: '\appendix', target: latex }
+  - { level: 1, section_name: "Appendix", section_number: 1 }
+  - { title: "Further Comments", src: 'further-comments.tex' }
+  - { the_matter: backmatter }
+  - { insert: "\\backmatter\n\\bookmarksetup{startatroot}\n\\chapterstyle{backmatter}", target: latex }
+  - { title: "Glossary", src: 'glossary.md', target: [ epub, mobi ], type: glossary }
+  - { title: "Glossary", src: 'glossary.tex', target: latex }
+  - { title: "Acknowledgements", src: 'acknowledgements.tex', type: acknowledgements }
+  - { title: "About the Author", src: 'about.tex' }
+  - { title: "Colophon", src: 'colophon.md', type: colophon }
+
+cover_image: "cover.jpg"
+
+# Either an ISBN or an UUID is necessary to identify the book.
+# If you don't have an ISBN, generate an UUID:
+# http://www.famkruithof.net/uuid/uuidgen
+
+# uuid: "000-000"
+isbn: "000-0-0000000-0-0"
+publisher: "The Publisher"
+publisher_atag: "<a href='http://thepublisher.org/' target='_blank'>www.thepublisher.org</a>"
+publisher_logo: "publisher-logo.jpg"
+book_atag: "<a href='http://thepublisher.org/thebookurl/' target='_blank'>www.thepublisher.org/thebookurl</a>"
+
