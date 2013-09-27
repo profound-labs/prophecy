@@ -7,17 +7,17 @@ module Prophecy
 
     attr_reader :title, :subtitle, :author, :publisher, :publisher_atag,
       :publisher_logo, :book_atag, :isbn, :uuid, :version, :edition,
-      :lang, :lang_iso_639_2,
-      :build_dir, :template_dir, :layouts_dir, :chapter_layout, :assets,
-      :exclude_assets, :toc, :output_format, :bookid, :rights, :creator,
-      :subject, :source, :contributors, :cover_image, :date,
-      :compile_name
+      :lang, :lang_iso_639_2, :build_dir, :template_dir, :layouts_dir,
+      :assets_dir, :chapter_layout, :include_assets, :exclude_assets,
+      :toc, :output_format, :bookid, :rights, :creator, :subject,
+      :source, :contributors, :cover_image, :date, :compile_name
 
     def initialize(config)
       @config = config.clone
 
       c = config
 
+      @output_format  = c['output_format']  || nil
       @title          = c['title']          || "The Title"
       @subtitle       = c['subtitle']       || nil
       @author         = c['author']         || "The Author"
@@ -34,15 +34,14 @@ module Prophecy
       @tex_dir        = c['tex_dir']        || find_format_dir('tex')
       @markdown_dir   = c['markdown_dir']   || find_format_dir('markdown')
       @xhtml_dir      = c['xhtml_dir']      || find_format_dir('xhtml')
-      @build_dir      = c['build_dir']      || nil
-      @template_dir   = c['template_dir']   || nil
+      @build_dir      = c['build_dir']      || File.join('./build', @output_format)
       @assets_dir     = c['assets_dir']     || find_assets_dir
+      @template_dir   = c['template_dir']   || find_template_dir
       @layouts_dir    = c['layouts_dir']    || File.join(@assets_dir, 'layouts')
       @chapter_layout = c['chapter_layout'] || 'page.xhtml.erb'
-      @assets         = c['assets']         || []
-      @exclude_assets = c['exclude_assets'] || []
+      @include_assets = c['include_assets'] || format_include_assets
+      @exclude_assets = c['exclude_assets'] || format_exclude_assets
       @toc            = c['toc']            || nil
-      @output_format  = c['output_format']  || nil
       @bookid         = c['bookid']         || nil
       @rights         = c['rights']         || nil
       @creator        = c['creator']        || nil
@@ -59,6 +58,10 @@ module Prophecy
       Chapter.section_name = config['section_names'] if config['section_names']
       if @toc
         @toc.each do |ch|
+          if ch.is_a?(String)
+            ch = { src: ch }
+          end
+
           if ch.has_key?('target')
             if ch['target'].include?(@output_format) || ch['target'] == @output_format
               @chapters << Chapter.new(self, ch)
@@ -88,7 +91,7 @@ module Prophecy
 
     def build_latex
       FileUtils.cp_r(File.join(@template_dir, '.'), @build_dir)
-      FileUtils.cp_r(@assets, @build_dir)
+      FileUtils.cp_r(@include_assets, @build_dir)
 
       # For ERB binding.
       book = self
@@ -118,7 +121,7 @@ module Prophecy
 
     def build_epub_mobi
       FileUtils.cp_r(File.join(@template_dir, '.'), @build_dir)
-      FileUtils.cp_r(@assets, File.join(@build_dir, 'OEBPS'))
+      FileUtils.cp_r(@include_assets, File.join(@build_dir, 'OEBPS'))
 
       content_opf_path = nil
 
@@ -209,6 +212,8 @@ module Prophecy
       self.output_format == 'latex'
     end
 
+    private
+
     def find_format_dir(format)
       if Dir.exists?("./manuscript/#{format}/")
         "./manuscript/#{format}/"
@@ -217,13 +222,44 @@ module Prophecy
       end
     end
 
-    private
-
     def find_assets_dir
       if Dir.exists?('./assets/')
         File.join('.', 'assets')
       else
-        File.join(File.dirname(__FILE__), 'assets')
+        File.join(File.expand_path(File.dirname(__FILE__)), 'assets')
+      end
+    end
+
+    def format_include_assets
+      case (self.output_format)
+      when 'epub', 'mobi'
+        [
+          File.join(self.assets_dir, 'webfonts'),
+          File.join(self.assets_dir, 'images'),
+          File.join(self.assets_dir, 'stylesheets')
+        ]
+      when 'latex'
+        []
+      end
+    end
+
+    def format_exclude_assets
+      case (self.output_format)
+      when 'epub'
+        [ 'ie.css', 'print.css', 'style-mobi.css', '*.swp', '.gitkeep' ]
+      when 'mobi'
+        [ 'ie.css', 'print.css', 'style-epub.css', '*.swp', '.gitkeep' ]
+      when 'latex'
+        []
+      end
+    end
+
+    def find_template_dir
+      case (self.output_format)
+      when 'epub', 'mobi'
+        File.join(self.assets_dir, 'epub_template')
+      when 'latex'
+        File.join(self.assets_dir, 'latex_template')
       end
     end
 

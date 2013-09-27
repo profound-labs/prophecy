@@ -34,7 +34,7 @@ module Prophecy
 
       if File.basename(@path.to_s) == 'toc.ncx'
         @id = 'ncx'
-      elsif File.basename(book.cover_image) == File.basename(itempath)
+      elsif !book.cover_image.nil? && File.basename(book.cover_image) == File.basename(itempath)
         @id = 'cover-image'
       else
         @id = self.chapter_id || @href.to_s.downcase.gsub(/[^a-z0-9-]/, '-').gsub(/--+/, '-')

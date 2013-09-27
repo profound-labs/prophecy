@@ -27,6 +27,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "pry-debugger"
   spec.add_development_dependency "awesome_print"
 
+  spec.add_runtime_dependency "compass", ">= 0.12.2"
   spec.add_runtime_dependency "kramdown", ">= 1.2.0"
   spec.add_runtime_dependency "nokogiri", ">= 1.6.0"
   spec.add_runtime_dependency "mime-types", ">= 1.25"

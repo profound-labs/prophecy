@@ -30,9 +30,9 @@ module Prophecy
 
       # Compile Epub with Zip
       path = File.expand_path("./publish/epub/#{@book.compile_name}.epub")
-      sh "cd #{@book.build_dir} && zip -X #{path} mimetype"
-      sh "cd #{@book.build_dir} && zip -rg #{path} META-INF"
-      sh "cd #{@book.build_dir} && zip -rg #{path} OEBPS"
+      system "cd #{@book.build_dir} && zip -X #{path} mimetype"
+      system "cd #{@book.build_dir} && zip -rg #{path} META-INF"
+      system "cd #{@book.build_dir} && zip -rg #{path} OEBPS"
     end
 
     #desc "mobi", "generate MOBI"
@@ -55,9 +55,6 @@ module Prophecy
       end
 
       @config['output_format'] ||= 'epub'
-      @config['template_dir'] ||= './assets/epub_template/'
-      @config['build_dir'] ||= './build/epub/'
-
       Prophecy::Book.new(@config)
     end
 
@@ -69,9 +66,6 @@ module Prophecy
       end
 
       @config['output_format'] ||= 'mobi'
-      @config['template_dir'] ||= './assets/epub_template/'
-      @config['build_dir'] ||= './build/mobi/'
-
       Prophecy::Book.new(@config)
     end
 
@@ -82,14 +76,11 @@ module Prophecy
       end
 
       @config['output_format'] ||= 'latex'
-      @config['template_dir'] ||= './assets/latex_template/'
-      @config['build_dir'] ||= './build/latex/'
-
       @book = Prophecy::Book.new(@config)
     end
 
     def compile_assets
-      sh 'cd assets && compass compile'
+      system 'cd assets && compass compile'
     end
 
     def clean_dir(dir)
@@ -103,7 +94,7 @@ module Prophecy
         puts "Cancelled, bye!"
         exit
       end
-      sh "rm -rf #{File.join(dir, '*')}"
+      system "rm -rf #{File.join(dir, '*')}"
     end
 
   end
