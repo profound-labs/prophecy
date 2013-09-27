@@ -5,10 +5,10 @@ Feature: Generate new books
   I want to get a skeleton folder
 
   Scenario: Starting a new book
-    When I run `prophecy new hiddenway`
+    When I run `prophecy new "The Hidden Way"`
     Then the following files should exist:
-      | hiddenway/book.yml |
-    Then the file "hiddenway/book.yml" should contain:
+      | thehiddenway/book.yml |
+    Then the file "thehiddenway/book.yml" should contain:
       """
-      title: hiddenway
+      title: "The Hidden Way"
       """

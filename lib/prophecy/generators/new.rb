@@ -10,11 +10,11 @@ module Prophecy
       argument :title, :type => :string
 
       def self.source_root
-        File.dirname(__FILE__) + "/book"
+        File.dirname(__FILE__)
       end
 
       def copy_book
-        directory("#{title}")
+        directory('book', "#{title.downcase.gsub(/[^a-z0-9-]/, '')}")
       end
     end
   end
