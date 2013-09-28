@@ -2,6 +2,3 @@
 *.aux
 *.log
 *.toc
-publish/epub
-publish/mobi
-publish/pdf
