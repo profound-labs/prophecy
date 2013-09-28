@@ -11,11 +11,11 @@ of pain.
 Sounds like the machine should be doing this, and we just go and
 meditate on peace.
 
-## Let's see that:
+## Let's see that
 
 Screencast.
 
-## And then this happens:
+## And then this happens
 
 - Screeshots
 

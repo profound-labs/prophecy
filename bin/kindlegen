@@ -6,7 +6,6 @@ book_mobi = ARGV.shift
 if RUBY_PLATFORM =~ /linux|cygwin/
   executable = 'kindlegen_linux'
 elsif RUBY_PLATFORM =~ /darwin/
-  puts "its darwin"
   executable = 'kindlegen_mac'
 elsif RUBY_PLATFORM =~ /mingw|mswin32/
   executable = 'kindlegen.exe'

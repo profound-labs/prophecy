@@ -28,10 +28,30 @@ module Prophecy
       @book.generate_build
 
       # Compile Epub with Zip
+      print "Compiling Epub with Zip... "
       path = File.expand_path("./publish/epub/#{@book.compile_name}.epub")
-      system "cd #{@book.build_dir} && zip -X #{path} mimetype"
-      system "cd #{@book.build_dir} && zip -rg #{path} META-INF"
-      system "cd #{@book.build_dir} && zip -rg #{path} OEBPS"
+
+      if RUBY_PLATFORM =~ /linux|darwin|cygwin/
+        binpath = "zip"
+      elsif RUBY_PLATFORM =~ /mingw|mswin32/
+        binpath = File.expand_path(File.join(__FILE__, '..', '..', '..', 'bin/zip.exe'))
+      end
+
+      cmd = "{ cd #{@book.build_dir}"
+      cmd += " && #{binpath} -X \"#{path}\" mimetype"
+      cmd += " && #{binpath} -rg \"#{path}\" META-INF"
+      cmd += " && #{binpath} -rg \"#{path}\" OEBPS; } > zip.log 2>&1"
+
+      if system(cmd)
+        puts "OK"
+        puts "Find the Epub file in ./publish/epub"
+      else
+        puts "Error. See zip.log"
+        exit 2
+      end
+
+      #puts "Validating with epubcheck"
+      #cmd = system("epubcheck builds/epub/book.epub")
     end
 
     desc "mobi", "generate MOBI with Kindlegen"
@@ -44,16 +64,57 @@ module Prophecy
       @book.generate_build
 
       # Compile Epub with Zip for conversion with kindlegen
+      print "Compiling Epub (for Mobi) with Zip... "
       path = File.expand_path("./#{@book.compile_name}.epub")
-      system "cd #{@book.build_dir} && zip -X #{path} mimetype"
-      system "cd #{@book.build_dir} && zip -rg #{path} META-INF"
-      system "cd #{@book.build_dir} && zip -rg #{path} OEBPS"
+
+      if RUBY_PLATFORM =~ /linux|darwin|cygwin/
+        binpath = "zip"
+      elsif RUBY_PLATFORM =~ /mingw|mswin32/
+        binpath = File.expand_path(File.join(__FILE__, '..', '..', '..', 'bin/zip.exe'))
+      end
+
+      cmd = "{ cd #{@book.build_dir}"
+      cmd += " && #{binpath} -X \"#{path}\" mimetype"
+      cmd += " && #{binpath} -rg \"#{path}\" META-INF"
+      cmd += " && #{binpath} -rg \"#{path}\" OEBPS; } > zip.log 2>&1"
+
+      if system(cmd)
+        puts "OK"
+      else
+        puts "Error. See zip.log"
+        exit 2
+      end
 
       # Kindlegen
+      print "Converting Epub with Kindlegen... "
+
       binpath = File.expand_path(File.join(__FILE__, '..', '..', '..', 'bin/kindlegen'))
-      system "#{binpath} '#{@book.compile_name}.epub'"
-      system "mv '#{@book.compile_name}.mobi' ./publish/mobi/"
-      system "rm '#{@book.compile_name}.epub'"
+      cmd = "{ #{binpath} \"#{@book.compile_name}.epub\""
+      cmd += " && mv \"#{@book.compile_name}.mobi\" ./publish/mobi/"
+      cmd += " && rm \"#{@book.compile_name}.epub\"; } > kindlegen.log 2>&1"
+
+      if system(cmd)
+        puts "OK"
+      else
+        puts "Error. See kindlegen.log"
+        exit 2
+      end
+
+      # Stripping extra source
+      print "Stripping the SRCS record (source files) from the Mobi with Kindlestrip... "
+
+      binpath = File.expand_path(File.join(__FILE__, '..', '..', '..', 'bin/kindlestrip.py'))
+      cmd = "{ #{binpath} \"./publish/mobi/#{@book.compile_name}.mobi\" \"./publish/mobi/#{@book.compile_name}.stripped.mobi\""
+      cmd += " && mv \"./publish/mobi/#{@book.compile_name}.stripped.mobi\" \"./publish/mobi/#{@book.compile_name}.mobi\"; } > kindlestrip.log 2>&1"
+
+      if system(cmd)
+        puts "OK"
+        puts "Find the Mobi file in ./publish/mobi"
+      else
+        puts "Error. See kindlestrip.log"
+        exit 2
+      end
+
     end
 
     desc "pdf", "generate PDF with LaTeX"
