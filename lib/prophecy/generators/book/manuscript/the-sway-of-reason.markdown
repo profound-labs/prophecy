@@ -9,14 +9,16 @@
 > Nemesis, 1917
 > {:.attribution}
 
-Yet now the sway of reason seemed irrefutably shaken, for this Cyclopean maze
-of squared, curved, and angled blocks had features which cut off all
-comfortable refuge. It was, very clearly, the blasphemous city of the mirage in
-stark, objective, and ineluctable reality. That damnable portent had had a
-material basis after all—there had been some horizontal stratum of ice dust in
-the upper air, and this shocking stone survival had projected its image across
-the mountains according to the simple laws of reflection, Of course, the
-phantom had been twisted and exaggerated, and had contained things which the
-real source did not contain; yet now, as we saw that real source, we thought it
+Yet now the sway of reason seemed irrefutably shaken, for this
+Cyclopean maze of squared, curved, and angled blocks had features
+which cut off all comfortable refuge. It was, very clearly, the
+blasphemous city of the mirage in stark, objective, and
+ineluctable reality. That damnable portent had had a material
+basis after all—there had been some horizontal stratum of ice
+dust in the upper air, and this shocking stone survival had
+projected its image across the mountains according to the simple
+laws of reflection, Of course, the phantom had been twisted and
+exaggerated, and had contained things which the real source did
+not contain; yet now, as we saw that real source, we thought it
 even more hideous and menacing than its distant image.
 

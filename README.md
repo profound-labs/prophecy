@@ -4,11 +4,10 @@ Prophecy Book Boilerplate
 Book boilerplate to generate books as EPUB, MOBI, and PDF from simple
 Markdown text files. Or from HTML. Or from LaTeX. Or mixed.
 
-Repeating, fixing, improving page layout, CSS typography, the format
-standards, TOC `<navPoint>`s, `<manifest>`, `<guide>` -- is the litany
-of pain.
+Page layout, CSS typography, the format standards, TOC navPoints,
+manifest, guide -- is the litany of pain.
 
-Sounds like the machine should be doing this, and we just go and
+Sounds like the machine should be doing this, and we can just go and
 meditate on peace.
 
 ## Let's see that

@@ -8,7 +8,9 @@ Gem::Specification.new do |spec|
   spec.version       = Prophecy::VERSION
   spec.authors       = ["Gambhiro"]
   spec.email         = ["gambhiro@ratanagiri.org.uk"]
-  spec.description   = %q{Book boilerplate for generating PDF, EPUB and MOBI}
+  spec.description   = %q{Book boilerplate to generate books as EPUB,
+    MOBI, and PDF from simple Markdown text files. Or from HTML. Or from
+    LaTeX. Or mixed.}
   spec.summary       = %q{Book boilerplate for generating PDF, EPUB and MOBI}
   spec.homepage      = "http://profound-labs.github.io/projects/prophecy/"
   spec.license       = "MIT"
