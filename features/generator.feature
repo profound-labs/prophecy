@@ -12,3 +12,4 @@ Feature: Generate new books
       """
       title: "The Hidden Way"
       """
+

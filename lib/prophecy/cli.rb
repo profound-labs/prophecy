@@ -2,6 +2,7 @@
 require 'thor'
 require 'prophecy'
 require 'prophecy/generators/new'
+require 'prophecy/generators/assets'
 
 module Prophecy
 
@@ -10,6 +11,11 @@ module Prophecy
     desc "new \"Title Of Book\"", "start a new book project"
     def new(title)
       Prophecy::Generators::New.start([title, ])
+    end
+
+    desc "assets", "get a local copy of the 'assets' folder for customization"
+    def assets
+      Prophecy::Generators::Assets.start
     end
 
     desc "epub", "generate EPUB"
