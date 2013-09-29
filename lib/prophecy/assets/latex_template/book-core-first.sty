@@ -40,23 +40,33 @@
 % http://tex.stackexchange.com/questions/20580/how-to-enable-ligatures-for-emdash-endash-in-luatex
 
 \setmainfont[
+  Path = {./fonts/},
   SmallCapsFont = Crimson Roman,
   SmallCapsFeatures= { Ligatures = TeX, Letters = SmallCaps },
   BoldFont = Gentium Book Basic Bold,
 ]{Gentium}
 
 \newfontfamily\crimsonRomanFont[
+  Path = {./fonts/},
   BoldFont = Crimson Semibold,
   ItalicFont = Crimson Italic,
 ]{Crimson Roman}
+
 \newfontfamily\crimsonRomanFontOldNum[
+  Path = {./fonts/},
   Numbers = OldStyle,
 ]{Crimson Roman}
-\newfontfamily\gentiumFont{Gentium}
+
+\newfontfamily\gentiumFont[
+  Path = {./fonts/},
+]{Gentium}
 
 % header and footer
 
-\newfontfamily\footFont[Renderer = Basic]{Shaker Pali}
+\newfontfamily\footFont[
+  Path = {./fonts/},
+  Renderer = Basic,
+]{Crimson Roman}
 
 \newcommand{\footSize}
   {\@setfontsize\footSize{9}{9}}

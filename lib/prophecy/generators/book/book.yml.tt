@@ -32,9 +32,9 @@ toc:
   - { title: "Title Page", src: 'titlepage.xhtml.erb', target: mobi, type: text, class: title-page }
   - { title: "Contents", src: 'toc.xhtml.erb', target: mobi, type: toc }
   - { the_matter: mainmatter, section_number: 1 }
-  - the-sway-of-reason.markdown
-  - unhuman-massiveness.markdown
+  - like-a-boat.md
   - nameless-labyrinth.markdown
+  - time-machine.markdown
   - { the_matter: backmatter }
   - glossary.md
 

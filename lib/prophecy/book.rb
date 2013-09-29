@@ -240,7 +240,9 @@ module Prophecy
           File.join(self.assets_dir, 'stylesheets')
         ]
       when 'latex'
-        inc = []
+        inc = [
+          File.join(self.assets_dir, 'fonts'),
+        ]
       end
 
       if config_include.nil?
