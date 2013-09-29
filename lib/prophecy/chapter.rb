@@ -77,8 +77,21 @@ module Prophecy
       unless @src.nil?
         @render_ext = ext_for_output[book.output_format]
 
-        @path = File.expand_path(File.join(
-          book.format_dir(@src), @src))
+        path = nil
+        try_folders = [ book.format_dir(@src), 'manuscript' ].uniq
+        try_folders.each do |dir|
+          path = File.join(dir, @src)
+          if File.exists?(path)
+            @path = path
+            break
+          end
+        end
+
+        unless @path
+          puts "Error. Cannot find #{@src} in folders #{try_folders.join(', ')}"
+          exit 2
+        end
+
         @render_name = File.basename(@path).sub(/\.erb$/, '').sub(/\.[^\.]+$/, @render_ext)
         @render_path = File.expand_path(
           File.join(

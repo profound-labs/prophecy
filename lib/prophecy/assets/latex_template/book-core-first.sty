@@ -35,60 +35,74 @@
 \RequirePackage{fontspec}
 \defaultfontfeatures{Ligatures={TeX}}
 
+% Dummy font commands to use system defaults instead of custom fonts
+
+\newcommand\crimsonRomanFont{}
+\newcommand\crimsonRomanFontOldNum{}
+\newcommand\gentiumFont{}
+\newcommand\footFont{}
+\newcommand\partTitleFont{}
+\newcommand\chapterNameFont{}
+\newcommand\chapterTitleFont{}
+\newcommand\chapterNumberFont{}
+\newcommand\chapterAuthorFont{}
+\newcommand\chapterNoteFont{}
+\newcommand\sectionFont{}
+
 % If -- dashes don't work for your font, try
 % Renderer = Basic
 % http://tex.stackexchange.com/questions/20580/how-to-enable-ligatures-for-emdash-endash-in-luatex
 
-\setmainfont[
-  Path = {./fonts/},
-  SmallCapsFont = Crimson-Roman.otf,
-  SmallCapsFeatures= { Ligatures = TeX, Letters = SmallCaps },
-  ItalicFont = GentiumPlus-I.ttf,
-  BoldFont = GenBkBasB.ttf,
-  BoldItalicFont = GenBkBasBI.ttf,
-]{GentiumPlus-R.ttf}
-
-\newfontfamily\crimsonRomanFont[
-  Path = {./fonts/},
-  ItalicFont = Crimson-Italic.otf,
-  BoldFont = Crimson-Semibold.otf,
-  BoldItalicFont = Crimson-SemiboldItalic.otf,
-]{Crimson-Roman.otf}
-
-\newfontfamily\crimsonRomanFontOldNum[
-  Path = {./fonts/},
-  Numbers = OldStyle,
-]{Crimson-Roman.otf}
-
-\newfontfamily\gentiumFont[
-  Path = {./fonts/},
-]{GentiumPlus-R.ttf}
-
-% header and footer
-
-\newfontfamily\footFont[
-  Path = {./fonts/},
-  %Renderer = Basic,
-]{Crimson-Roman.otf}
+%\setmainfont[
+%  Path = {./fonts/},
+%  SmallCapsFont = Crimson-Roman.otf,
+%  SmallCapsFeatures= { Ligatures = TeX, Letters = SmallCaps },
+%  ItalicFont = GentiumPlus-I.ttf,
+%  BoldFont = GenBkBasB.ttf,
+%  BoldItalicFont = GenBkBasBI.ttf,
+%]{GentiumPlus-R.ttf}
+%
+%\newfontfamily\crimsonRomanFont[
+%  Path = {./fonts/},
+%  ItalicFont = Crimson-Italic.otf,
+%  BoldFont = Crimson-Semibold.otf,
+%  BoldItalicFont = Crimson-SemiboldItalic.otf,
+%]{Crimson-Roman.otf}
+%
+%\newfontfamily\crimsonRomanFontOldNum[
+%  Path = {./fonts/},
+%  Numbers = OldStyle,
+%]{Crimson-Roman.otf}
+%
+%\newfontfamily\gentiumFont[
+%  Path = {./fonts/},
+%]{GentiumPlus-R.ttf}
+%
+%% header and footer
+%
+%\newfontfamily\footFont[
+%  Path = {./fonts/},
+%  %Renderer = Basic,
+%]{Crimson-Roman.otf}
 
 \newcommand{\footSize}
   {\@setfontsize\footSize{9}{9}}
 
 % chapter
 
-\newfontfamily\partTitleFont[
-  ItalicFont = Shaker 2 Light Italic,
-  Renderer = Basic,
-]{Shaker 2 Light}
-
-\newfontfamily\chapterNameFont{Crimson Roman}
-\newfontfamily\chapterTitleFont{Crimson Roman}
-\newfontfamily\chapterNumberFont{Crimson Roman}
-\newfontfamily\chapterAuthorFont{Crimson Roman}
-\newfontfamily\chapterNoteFont[
-  BoldFont = Crimson Semibold,
-  ItalicFont = Crimson Italic,
-]{Crimson Roman}
+%\newfontfamily\partTitleFont[
+%  ItalicFont = Shaker 2 Light Italic,
+%  %Renderer = Basic,
+%]{Crimson Roman}
+%
+%\newfontfamily\chapterNameFont{Crimson Roman}
+%\newfontfamily\chapterTitleFont{Crimson Roman}
+%\newfontfamily\chapterNumberFont{Crimson Roman}
+%\newfontfamily\chapterAuthorFont{Crimson Roman}
+%\newfontfamily\chapterNoteFont[
+%  BoldFont = Crimson Semibold,
+%  ItalicFont = Crimson Italic,
+%]{Crimson Roman}
 
 \newcommand{\chapterNameSize}
   {\@setfontsize\chapterNameSize{22}{24}}
@@ -103,10 +117,10 @@
 
 % section
 
-\newfontfamily\sectionFont[
-  BoldFont = Crimson Semibold,
-  ItalicFont = Crimson Italic,
-]{Crimson Roman}
+%\newfontfamily\sectionFont[
+%  BoldFont = Crimson Semibold,
+%  ItalicFont = Crimson Italic,
+%]{Crimson Roman}
 
 \newcommand{\sectionSize}
   {\@setfontsize\sectionSize{13}{15}}

@@ -18,7 +18,7 @@ Screencast.
 
 - Screeshots
 
-Embedded fonts and CSS typography for the ebooks, and a pretty LaTeX
+Embedded fonts and CSS typography for the ebooks, and a LaTeX
 documentclass for the PDF.
 
 ## Onwards
