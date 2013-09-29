@@ -41,32 +41,35 @@
 
 \setmainfont[
   Path = {./fonts/},
-  SmallCapsFont = Crimson Roman,
+  SmallCapsFont = Crimson-Roman.otf,
   SmallCapsFeatures= { Ligatures = TeX, Letters = SmallCaps },
-  BoldFont = Gentium Book Basic Bold,
-]{Gentium}
+  ItalicFont = GentiumPlus-I.ttf,
+  BoldFont = GenBkBasB.ttf,
+  BoldItalicFont = GenBkBasBI.ttf,
+]{GentiumPlus-R.ttf}
 
 \newfontfamily\crimsonRomanFont[
   Path = {./fonts/},
-  BoldFont = Crimson Semibold,
-  ItalicFont = Crimson Italic,
-]{Crimson Roman}
+  ItalicFont = Crimson-Italic.otf,
+  BoldFont = Crimson-Semibold.otf,
+  BoldItalicFont = Crimson-SemiboldItalic.otf,
+]{Crimson-Roman.otf}
 
 \newfontfamily\crimsonRomanFontOldNum[
   Path = {./fonts/},
   Numbers = OldStyle,
-]{Crimson Roman}
+]{Crimson-Roman.otf}
 
 \newfontfamily\gentiumFont[
   Path = {./fonts/},
-]{Gentium}
+]{GentiumPlus-R.ttf}
 
 % header and footer
 
 \newfontfamily\footFont[
   Path = {./fonts/},
-  Renderer = Basic,
-]{Crimson Roman}
+  %Renderer = Basic,
+]{Crimson-Roman.otf}
 
 \newcommand{\footSize}
   {\@setfontsize\footSize{9}{9}}

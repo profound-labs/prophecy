@@ -18,14 +18,30 @@ module Prophecy
       Prophecy::Generators::Assets.start
     end
 
-    desc "epub", "generate EPUB"
+    desc "epub", "Generate new EPUB from sources. This calls assets_compile, epub_clean_dir, epub_build, epub_compile."
     def epub
-      @config = YAML::load(IO.read('book.yml'))
-      # Local assets dir in book project folder
-      compile_assets if Dir.exists?('./assets') && @assets_dir == File.join('.', 'assets')
-      @book = epub_init_book
-      clean_dir(@book.build_dir)
+      epub_init
+      assets_compile
+      epub_clean_dir
+      epub_build
+      epub_compile
+    end
+
+    desc "epub_clean_dir", "Delete everything in the EPUB build dir"
+    def epub_clean_dir
+      epub_init
+      clean_dir
+    end
+
+    desc "epub_build", "Generate EPUB build files from the templates and manuscript"
+    def epub_build
+      epub_init
       @book.generate_build
+    end
+
+    desc "epub_compile", "Compile EPUB file from the build dir"
+    def epub_compile
+      epub_init
 
       # Compile Epub with Zip
       print "Compiling Epub with Zip... "
@@ -54,14 +70,30 @@ module Prophecy
       #cmd = system("epubcheck builds/epub/book.epub")
     end
 
-    desc "mobi", "generate MOBI with Kindlegen"
+    desc "mobi", "Generate new MOBI with Kindlegen from sources. This calls assets_compile, mobi_clean_dir, mobi_build, mobi_compile."
     def mobi
-      @config = YAML::load(IO.read('book.yml'))
-      # Local assets dir in book project folder
-      compile_assets if Dir.exists?('./assets') && @assets_dir == File.join('.', 'assets')
-      @book = mobi_init_book
-      clean_dir(@book.build_dir)
+      mobi_init
+      assets_compile
+      mobi_clean_dir
+      mobi_build
+      mobi_compile
+    end
+
+    desc "mobi_clean_dir", "Delete everything in the MOBI build dir"
+    def mobi_clean_dir
+      mobi_init
+      clean_dir
+    end
+
+    desc "mobi_build", "Generate MOBI build files from the templates and manuscript"
+    def mobi_build
+      mobi_init
       @book.generate_build
+    end
+
+    desc "mobi_compile", "Compile MOBI file from the build dir"
+    def mobi_compile
+      mobi_init
 
       # Compile Epub with Zip for conversion with kindlegen
       print "Compiling Epub (for Mobi) with Zip... "
@@ -114,16 +146,51 @@ module Prophecy
         puts "Error. See kindlestrip.log"
         exit 2
       end
-
     end
 
-    desc "pdf", "generate PDF with LaTeX"
-    def pdf
-      @config = YAML::load(IO.read('book.yml'))
-      @book = latex_init_book
-      clean_dir(@book.build_dir)
+    desc "latex", "Generate new PDF with LaTeX from sources. This calls latex_clean_dir, latex_build, latex_compile"
+    def latex
+      latex_init
+      latex_clean_dir
+      latex_build
+      latex_compile
+    end
+
+    desc "latex_clean_dir", "Delete everything in the LaTeX build dir"
+    def latex_clean_dir
+      latex_init
+      clean_dir
+    end
+
+    desc "latex_build", "Generate LaTeX build files from the templates and manuscript"
+    def latex_build
+      latex_init
       @book.generate_build
-      system "cd #{@book.build_dir} && make"
+    end
+
+    desc "latex_compile", "Compile PDF file from the LaTeX build dir"
+    def latex_compile
+      latex_init
+
+      # Is LuaLatex installed?
+      unless system("lualatex --version > /dev/null 2>&1")
+        puts "Error. LuaLaTeX not found."
+        exit 2
+      end
+
+      print "Running 'make' in #{@book.build_dir} ... "
+
+      cmd = "{ cd #{@book.build_dir}"
+      cmd += " && make"
+      cmd += " && cp book_main.pdf ../../publish/pdf/; } > lualatex.log 2>&1"
+
+      if system(cmd)
+        puts "OK"
+        puts "Find book_main.pdf in ./build/latex/ and ./publish/pdf"
+      else
+        puts "Error. See lualatex.log and ./build/latex/book_main.log"
+        exit 2
+      end
     end
 
     desc "to_markdown", "convert .tex files to markdown"
@@ -145,9 +212,25 @@ module Prophecy
       end
     end
 
+    desc "assets_compile", "Compile assets (run compass, etc.) if there is a local assets folder"
+    def assets_compile
+      unless Dir.exists?('./assets')
+        return
+      end
+      puts "Running 'compass compile' ..."
+      if system 'cd assets && compass compile'
+        puts "OK"
+      else
+        puts "Error"
+        exit 2
+      end
+    end
+
     private
 
-    def epub_init_book
+    def epub_init
+      @config ||= YAML::load(IO.read('book.yml'))
+
       [ './epub_mobi.yml',
         './epub.yml' ].each do |c|
         next if !File.exists?(c)
@@ -156,10 +239,12 @@ module Prophecy
       end
 
       @config['output_format'] ||= 'epub'
-      Prophecy::Book.new(@config)
+      @book ||= Prophecy::Book.new(@config)
     end
 
-    def mobi_init_book
+    def mobi_init
+      @config ||= YAML::load(IO.read('book.yml'))
+
       [ './epub_mobi.yml',
         './mobi.yml' ].each do |c|
         next if !File.exists?(c)
@@ -168,10 +253,12 @@ module Prophecy
       end
 
       @config['output_format'] ||= 'mobi'
-      Prophecy::Book.new(@config)
+      @book ||= Prophecy::Book.new(@config)
     end
 
-    def latex_init_book
+    def latex_init
+      @config ||= YAML::load(IO.read('book.yml'))
+
       [ './latex.yml', ].each do |c|
         next if !File.exists?(c)
         h = YAML::load(IO.read(c))
@@ -179,14 +266,12 @@ module Prophecy
       end
 
       @config['output_format'] ||= 'latex'
-      @book = Prophecy::Book.new(@config)
+      @book ||= Prophecy::Book.new(@config)
     end
 
-    def compile_assets
-      system 'cd assets && compass compile'
-    end
-
-    def clean_dir(dir)
+    def clean_dir
+      dir = @book.build_dir
+      puts "Cleaning #{dir} ..."
       if Dir[File.join(dir, '*')].empty?
         puts "#{dir} is empty."
         return

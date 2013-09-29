@@ -238,7 +238,7 @@ module Prophecy
         system 'pandoc --smart --normalize --chapters --from=html --to=latex -o ./temp-chapter.tex ./temp-chapter.html'
         ret = IO.read('./temp-chapter.tex')
         FileUtils.rm(['./temp-chapter.tex', './temp-chapter.html'])
-      when '.md'
+      when '.md', '.mkd', '.markdown'
         ret = Kramdown::Document.new(text, options = {:latex_headers => %w{chapter section subsection subsubsection paragraph subparagraph}}).to_latex
       when '.tex'
         ret = text
