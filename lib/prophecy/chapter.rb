@@ -213,6 +213,11 @@ module Prophecy
       when '.md', '.mkd', '.markdown'
         ret = Kramdown::Document.new(text).to_html
       when '.tex'
+        # Is Pandoc installed?
+        unless system("pandoc --version > /dev/null 2>&1")
+          puts "Error. Pandoc not found, I'll need that for TeX to HTML conversion."
+          exit 2
+        end
         File.open('./temp-chapter.tex', 'w'){|f| f << text }
         r = system 'pandoc --smart --normalize --from=latex --to=html -o ./temp-chapter.xhtml ./temp-chapter.tex'
         warn "WARNING: pandoc returned non-zero for #{self.to_s}" unless r
@@ -247,6 +252,11 @@ module Prophecy
 
       case format
       when '.html', '.xhtml'
+        # Is Pandoc installed?
+        unless system("pandoc --version > /dev/null 2>&1")
+          puts "Error. Pandoc not found, I'll need that for HTML to TeX conversion."
+          exit 2
+        end
         File.open('./temp-chapter.html', 'w'){|f| f << text }
         system 'pandoc --smart --normalize --chapters --from=html --to=latex -o ./temp-chapter.tex ./temp-chapter.html'
         ret = IO.read('./temp-chapter.tex')
