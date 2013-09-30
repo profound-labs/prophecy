@@ -29,7 +29,7 @@ toc:
   - { title: "Cover", src: 'cover.xhtml.erb', target: epub, layout: none, type: cover, linear: no }
   - { title: "Title Page", src: 'titlepage.xhtml.erb', target: epub, type: title-page }
   - { title: "Contents", src: 'toc.xhtml.erb', target: epub, type: toc }
-  - { insert: "\\cleartorecto\n\\tableofcontents*", target: latex }
+  - { insert: "\\cleartorecto\n\\tableofcontents", target: latex }
   - preface.md
   - { title: "Title Page", src: 'titlepage.xhtml.erb', target: mobi, type: text, class: title-page }
   - { title: "Contents", src: 'toc.xhtml.erb', target: mobi, type: toc }

@@ -11,12 +11,16 @@
 
 @import "compass/typography/links/link-colors"
 
-$contentPadding: 22px
-$headerRightMargin: 0px
-$titlePageRuleWidth: 40px
+$contentFontFamily: 'SourceSansPro', 'Lucida Grande', 'DejaVu Sans', 'Bitstream Vera Sans', 'Tahoma', 'Palatino', 'Caecilia', sans-serif !default
+$contentHeaderFontFamily: 'SourceSansPro', 'Lucida Grande', 'DejaVu Sans', 'Bitstream Vera Sans', 'Tahoma', 'Palatino', 'Caecilia', sans-serif !default
+$titlePageHeaderFontFamily: 'ExistenceLight' !default
+
+$contentPadding: 22px !default
+$headerRightMargin: 0px !default
+$titlePageRuleWidth: 40px !default
 
 #content
-  font-family: 'SourceSansPro', 'Lucida Grande', 'DejaVu Sans', 'Bitstream Vera Sans', 'Tahoma', 'Palatino', 'Caecilia', sans-serif
+  font-family: $contentFontFamily
   font-weight: normal
   line-height: 1.5em
   padding: $contentPadding
@@ -28,7 +32,7 @@ $titlePageRuleWidth: 40px
 
 h1, h2, h3, h4, h5, h6
   font-weight: normal
-  font-family: 'SourceSansPro', 'Lucida Grande', 'DejaVu Sans', 'Bitstream Vera Sans', 'Tahoma', 'Palatino', 'Caecilia', sans-serif
+  font-family: $contentHeaderFontFamily
   page-break-after: avoid
 
 h1, h2
@@ -86,7 +90,7 @@ a
     text-align: right
     padding-right: $headerRightMargin
   h1, h2, h3
-    font-family: 'ExistenceLight'
+    font-family: $titlePageHeaderFontFamily
     text-align: right
     text-transform: none
   h1, h2
