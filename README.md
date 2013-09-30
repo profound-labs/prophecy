@@ -12,11 +12,13 @@ meditate on peace.
 
 ## Let's see that
 
-Screencast.
+[![Screencast demo][demo-jpg]](http://asciinema.org/a/5680)
+
+[demo-jpg]: http://profound-labs.github.io/images/screenshots/prophecy-screencast.jpg
 
 ## And then this happens
 
-- Screeshots
+Add Screeshots.
 
 Embedded fonts and CSS typography for the ebooks, and a LaTeX
 documentclass for the PDF.
@@ -31,4 +33,10 @@ documentclass for the PDF.
 Home: [profound-labs.github.io/projects/prophecy/](http://profound-labs.github.io/projects/prophecy/)
 
 Github: [profound-labs/prophecy](https://github.com/profound-labs/prophecy)
+
+Rubygems: [prophecy](https://rubygems.org/gems/prophecy)
+
+## Inspried by
+
+[bookshop](https://github.com/blueheadpublishing/bookshop), [kitabu](https://github.com/fnando/kitabu), and the [gem guide](https://github.com/radar/guides/blob/master/gem-development.md).
 
