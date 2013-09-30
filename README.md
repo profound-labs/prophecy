@@ -10,11 +10,19 @@ manifest, guide -- is the litany of pain.
 Sounds like the machine should be doing this, and we can just go and
 meditate on peace.
 
+    $ gem install prophecy
+    $ prophecy new "This World"
+    $ cd thisworld
+    $ vim book.yml
+    $ prophecy epub && prophecy mobi && prophecy latex
+
 ## Let's see that
 
 [![Screencast demo][demo-jpg]](http://asciinema.org/a/5680)
 
 [demo-jpg]: http://profound-labs.github.io/images/screenshots/prophecy-screencast.jpg
+
+Demo: [asciinema.org/a/5680](http://asciinema.org/a/5680)
 
 ## And then this happens
 
@@ -25,8 +33,10 @@ documentclass for the PDF.
 
 ## Onwards
 
-- Installation for Linux, OS/X, Windows
+Add docs for...
+
 - Overview
+- Installation for Linux, OS/X, Windows
 - Custom page templates
 - Custom CSS style
 
