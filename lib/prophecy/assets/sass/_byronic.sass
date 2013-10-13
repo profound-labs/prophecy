@@ -15,6 +15,10 @@ $contentFontFamily: 'SourceSansPro', 'Lucida Grande', 'DejaVu Sans', 'Bitstream 
 $contentHeaderFontFamily: 'SourceSansPro', 'Lucida Grande', 'DejaVu Sans', 'Bitstream Vera Sans', 'Tahoma', 'Palatino', 'Caecilia', sans-serif !default
 $titlePageHeaderFontFamily: 'ExistenceLight' !default
 
+// 1px wide 60% gray (#999) is just about visible on Kindle. Using 55%
+// for safe contrast visibility.
+$border-color: lighten(black, 55%)
+
 $contentPadding: 22px !default
 $headerRightMargin: 0px !default
 $titlePageRuleWidth: 40px !default
@@ -133,6 +137,7 @@ table.toc
   td.section
     text-align: right
     color: $gray
+    width: 5em
   td.title
     a
       text-decoration: none
@@ -161,7 +166,7 @@ blockquote.epigraph,
     margin-top: 2pt
 
 blockquote
-  border-left: 1px solid lighten($gray, 40%)
+  border-left: 1px solid $border-color
   padding: 0.3em 0 0.3em 1em
 
 #content.verse blockquote

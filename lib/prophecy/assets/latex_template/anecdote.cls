@@ -1,7 +1,13 @@
 % Anecdote Class
 %
-% Maintained by:
-% Gambhiro Bhikkhu <gambhiro@ratanagiri.org.uk>
+% A memoir-based documentclass with a contemporary style for books with a lighter content.
+%
+% https://github.com/profound-labs/anecdote
+%
+% http://profound-labs.github.io/projects/anecdote/
+%
+% (c) Gambhiro Bhikkhu, 2013
+% gambhiro@ratanagiri.org.uk
 %
 % LPPL LaTeX Pubic Project Licence
 %

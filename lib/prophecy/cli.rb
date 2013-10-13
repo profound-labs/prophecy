@@ -193,24 +193,40 @@ module Prophecy
       end
     end
 
-#    desc "to_markdown", "convert .tex files to markdown"
-#    def to_markdown
-#      @book = latex_init_book
-#
-#      Dir[File.join(@book.tex_dir, '*.tex')].each do |f|
-#        dest = File.expand_path(File.join(@book.markdown_dir, File.basename(f).sub(/\.tex$/, '.md')))
-#        if File.exist?(dest)
-#          print "WARNING: destination exists: #{dest}\nOverwrite? [yN] "
-#          a = STDIN.gets.chomp()
-#          if a.downcase != 'y'
-#            puts "OK, skipping file"
-#            next
-#          end
-#        end
-#        r = system "/bin/bash #{File.join(@book.assets_dir, 'helpers/tex2md.sh')} '#{File.expand_path(f)}' '#{dest}'"
-#        warn "WARNING: tex2md.sh returned non-zero for #{f}" unless r
-#      end
-#    end
+    desc "latex_to_markdown", "convert build/tex/*.tex files to build/markdown/*.md"
+    def latex_to_markdown
+      latex_init
+
+      tex_dir = File.join("manuscript", "tex")
+      markdown_dir = File.join("manuscript", "markdown")
+
+      unless Dir.exists?(tex_dir)
+        puts "Could not find: #{tex_dir}."
+        exit 2
+      else
+        if Dir[File.join(tex_dir, '*.tex')].size == 0
+          puts "No .tex files found in #{tex_dir}"
+          exit 2
+        end
+      end
+
+      FileUtils.mkdir(markdown_dir) unless Dir.exists?(markdown_dir)
+
+      Dir[File.join(tex_dir, '*.tex')].each do |f|
+
+        dest = File.expand_path(File.join(markdown_dir, File.basename(f).sub(/\.tex$/, '.md')))
+        if File.exist?(dest)
+          print "WARNING: destination exists: #{dest}\nOverwrite? [yN] "
+          a = STDIN.gets.chomp()
+          if a.downcase != 'y'
+            puts "OK, skipping file"
+            next
+          end
+        end
+        r = system "/bin/bash #{File.join(@book.assets_dir, 'helpers/tex2md.sh')} '#{File.expand_path(f)}' '#{dest}'"
+        warn "WARNING: tex2md.sh returned non-zero for #{f}" unless r
+      end
+    end
 
     desc "assets_compile", "Compile assets (run compass, etc.) if there is a local assets folder"
     def assets_compile

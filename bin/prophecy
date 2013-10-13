@@ -1,4 +1,9 @@
 #!/usr/bin/env ruby
 
 require 'prophecy/cli'
+
+if File.exist?('book.rb')
+  require './book.rb'
+end
+
 Prophecy::CLI.start
