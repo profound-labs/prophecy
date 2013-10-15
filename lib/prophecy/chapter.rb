@@ -114,6 +114,7 @@ module Prophecy
 
       @type = config['type'] || nil
       @title = config['title'] || self.first_header_text || ""
+      @title = CGI.escapeHTML(@title)
       @class = config['class'] || ""
       @class += " #{@type}" if @type
       @id = config['id'] || 'chapter_' + @title.downcase.gsub(/[^a-z0-9-]/, '-').gsub(/--+/, '-')
@@ -212,6 +213,9 @@ module Prophecy
         ret = text
       when '.md', '.mkd', '.markdown'
         ret = Kramdown::Document.new(text).to_html
+        # Rewrite footnote IDs and refs, otherwise Epubcheck complains
+        # about colon
+        ret = ret.gsub('id="fn:', 'id="fn_').gsub('href="#fn:', 'href="#fn_').gsub('id="fnref:', 'id="fnref_').gsub('href="#fnref:', 'href="#fnref_')
       when '.tex'
         # Is Pandoc installed?
         unless system("pandoc --version > /dev/null 2>&1")

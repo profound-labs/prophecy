@@ -70,6 +70,27 @@ module Prophecy
       #cmd = system("epubcheck builds/epub/book.epub")
     end
 
+    desc "epub_check FILE", "Validate an EPUB file with Epubcheck."
+    def epub_check(filepath)
+
+      unless File.exist?(filepath)
+        warn "File not found: #{filepath}"
+        exit 2
+      end
+
+      print "Validating Epub with Epubcheck... "
+
+      binpath = File.expand_path(File.join(__FILE__, '..', '..', '..', 'epubcheck_dir/epubcheck.jar'))
+      cmd = "java -jar #{binpath} #{filepath}"
+
+      if system(cmd)
+        puts "OK"
+      else
+        puts "There was an error."
+        exit 2
+      end
+    end
+
     desc "mobi", "Generate new MOBI with Kindlegen from sources. This calls assets_compile, mobi_clean_dir, mobi_build, mobi_compile."
     def mobi
       mobi_init
