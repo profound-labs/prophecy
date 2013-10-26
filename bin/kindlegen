@@ -1,4 +1,4 @@
-#!/usr/bin/ruby
+#!/usr/bin/env ruby
 
 # parses 'kindlegen builds/mobi/book.epub'
 book_mobi = ARGV.shift
