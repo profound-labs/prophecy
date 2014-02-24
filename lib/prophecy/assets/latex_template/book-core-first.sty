@@ -1,13 +1,13 @@
 \ProvidesPackage{book-core-first}
 
-\RequirePackage[\ARU@babelLanguage]{babel}
+\RequirePackage[\BOOK@babelLanguage]{babel}
 \RequirePackage{nag}
 \RequirePackage{xparse}
 \RequirePackage{soul}
 \RequirePackage{textcomp}
 \RequirePackage[cmyk]{xcolor}
 \RequirePackage{graphicx}
-\graphicspath{{../../assets/images/}}
+% Add your \graphicspath declaration to your local style.
 \RequirePackage{eso-pic}
 \RequirePackage{ccicons}
 \RequirePackage{multicol}
@@ -40,7 +40,9 @@
 \newcommand\crimsonRomanFont{}
 \newcommand\crimsonRomanFontOldNum{}
 \newcommand\gentiumFont{}
+\newcommand\headerFont{}
 \newcommand\footFont{}
+\newcommand\pageNumFont{}
 \newcommand\partTitleFont{}
 \newcommand\chapterNameFont{}
 \newcommand\chapterTitleFont{}
@@ -52,6 +54,8 @@
 % If -- dashes don't work for your font, try
 % Renderer = Basic
 % http://tex.stackexchange.com/questions/20580/how-to-enable-ligatures-for-emdash-endash-in-luatex
+
+%% by filename:
 
 %\setmainfont[
 %  Path = {./fonts/},
@@ -77,13 +81,36 @@
 %\newfontfamily\gentiumFont[
 %  Path = {./fonts/},
 %]{GentiumPlus-R.ttf}
-%
-%% header and footer
-%
+
+%% or by name:
+
+%\setmainfont[
+%  SmallCapsFont = Crimson Roman,
+%  SmallCapsFeatures= { Ligatures = TeX, Letters = SmallCaps },
+%  BoldFont = Gentium Book Basic Bold,
+%]{Gentium}
+
+%\newfontfamily\crimsonRomanFont[
+%  BoldFont = Crimson Semibold,
+%  ItalicFont = Crimson Italic,
+%]{Crimson Roman}
+%\newfontfamily\crimsonRomanFontOldNum[
+%  Numbers = OldStyle,
+%]{Crimson Roman}
+%\newfontfamily\gentiumFont{Gentium}
+
+% header and footer
+
+%% by filename:
+
 %\newfontfamily\footFont[
 %  Path = {./fonts/},
 %  %Renderer = Basic,
 %]{Crimson-Roman.otf}
+
+%% or by name:
+
+%\newfontfamily\footFont[Renderer = Basic]{Shaker Pali}
 
 \newcommand{\footSize}
   {\@setfontsize\footSize{9}{9}}
@@ -104,6 +131,8 @@
 %  ItalicFont = Crimson Italic,
 %]{Crimson Roman}
 
+% Some default font sizes, use \renewcommand to adjust
+
 \newcommand{\chapterNameSize}
   {\@setfontsize\chapterNameSize{22}{24}}
 \newcommand{\chapterNumberSize}
@@ -114,6 +143,8 @@
   {\@setfontsize\chapterAuthorSize{12}{14}}
 \newcommand{\chapterNoteSize}
   {\@setfontsize\chapterNoteSize{10}{13}}
+\newcommand{\pageNumSize}
+  {\@setfontsize\pageNumSize{10}{12}}
 
 % section
 
@@ -302,16 +333,14 @@ philo-sophical munindo amaravati thai-land}
 
 % === Renewing package macros ===
 
-\let\mainmatterOrig=\mainmatter
-\renewcommand{\mainmatter}{%
-  \mainmatterOrig%
+\addtodef{\mainmatter}{}{%
   \addtocontents{toc}{\addvspace{10pt}}%
+  \setcounter{chapter}{0}%
 }
 
-\let\backmatterOrig=\backmatter
-\renewcommand{\backmatter}{%
-  \backmatterOrig%
+\addtodef{\backmatter}{}{%
   \addtocontents{toc}{\addvspace{15pt}}%
+  \bookmarksetup{startatroot}%
 }
 
 \renewenvironment{quote}%
@@ -672,10 +701,20 @@ philo-sophical munindo amaravati thai-land}
   \setlength{\chapterTitleLeftSkip}{6pc}
 }
 
-% alias the "fantasy" names into semantic chapter names
 
-% TODO: use a semantic name for normal chapters and alias to it
-\chapterstyle{lowtitle}
+% Commands to assign the chapter styles to book parts. Use \renewcommand
+% to adjust.
+
+\newcommand\frontmatterChapterStyle{\chapterstyle{hightitle}}
+\newcommand\mainmatterChapterStyle{\chapterstyle{lowtitle}}
+\newcommand\appendixChapterStyle{\chapterstyle{hightitle}}
+\newcommand\backmatterChapterStyle{\chapterstyle{hightitle}}
+
+% append them to the macros
+\addtodef{\frontmatter}{}{\frontmatterChapterStyle}
+\addtodef{\mainmatter}{}{\mainmatterChapterStyle}
+\addtodef{\appendix}{}{\appendixChapterStyle}
+\addtodef{\backmatter}{}{\backmatterChapterStyle}
 
 % === Section styles ===
 

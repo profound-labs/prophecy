@@ -17,7 +17,7 @@
 % ==============
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{anecdote}[2013/08/19 v0.5 A document class with a contemporary style.]
+\ProvidesClass{anecdote}[2013/08/19 v0.5 A memoir-based documentclass with a contemporary style for books with a lighter content.]
 
 % ========================
 % Preliminary Declarations
@@ -31,11 +31,11 @@
 \RequirePackage{calc}
 
 \pgfkeys{
-  /ARU/.cd,
+  /BOOK/.cd,
   pagePreset/.default=largepage,% "largepage": 6x9in, "smallpage": 5.25x8in
-  pagePreset/.store in=\ARU@pagePreset,
+  pagePreset/.store in=\BOOK@pagePreset,
   babelLanguage/.default=british,
-  babelLanguage/.store in=\ARU@babelLanguage,
+  babelLanguage/.store in=\BOOK@babelLanguage,
 }
 
 % Pass all unknown options to memoir
@@ -43,7 +43,7 @@
   \PassOptionsToClass{\CurrentOption}{memoir}
 }
 
-\ProcessPgfOptions{/ARU}
+\ProcessPgfOptions{/BOOK}
 \ProcessOptions\relax
 
 % ======================
@@ -64,7 +64,7 @@
 % m = text width
 % d = text height
 
-\ifthenelse{\equal{\ARU@pagePreset}{largepage}}{
+\ifthenelse{\equal{\BOOK@pagePreset}{largepage}}{
 
   % Large page size
   %
@@ -110,7 +110,7 @@
   \checkandfixthelayout
 
 }{
-\ifthenelse{\equal{\ANEC@pagePreset}{smallpage}}{
+\ifthenelse{\equal{\BOOK@pagePreset}{smallpage}}{
 
   % Small page size
   %

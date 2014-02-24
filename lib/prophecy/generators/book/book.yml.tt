@@ -25,7 +25,7 @@ date: <%= Time.now.strftime("%Y-%m-%d") %>
 
 toc:
   - { the_matter: frontmatter }
-  - { insert: "\\frontmatter*\n\\chapterstyle{frontmatter}", target: latex }
+  - { insert: '\frontmatter', target: latex }
   - { title: "Cover", src: 'cover.xhtml.erb', target: epub, layout: none, type: cover, linear: no }
   - { title: "Title Page", src: 'titlepage.xhtml.erb', target: epub, type: title-page }
   - { title: "Contents", src: 'toc.xhtml.erb', target: epub, type: toc }
@@ -34,7 +34,7 @@ toc:
   - { title: "Title Page", src: 'titlepage.xhtml.erb', target: mobi, type: text, class: title-page }
   - { title: "Contents", src: 'toc.xhtml.erb', target: mobi, type: toc }
   - { the_matter: mainmatter, section_number: 1 }
-  - { insert: "\\mainmatter*\n\\book{\\thetitle}\n\\setcounter{chapter}{0}\n\\chapterstyle{mainmatter}", target: latex }
+  - { insert: "\\mainmatter\n\\book{\\thetitle}", target: latex }
   - like-a-boat.md
   - nameless-labyrinth.markdown
   - time-machine.markdown
@@ -42,7 +42,7 @@ toc:
   - { section_name: "Appendix", section_number: 1 }
   - further-comments.markdown
   - { the_matter: backmatter }
-  - { insert: "\\backmatter\n\\bookmarksetup{startatroot}\n\\chapterstyle{backmatter}", target: latex }
+  - { insert: '\backmatter', target: latex }
   - glossary.md
 
 cover_image: "cover.jpg"

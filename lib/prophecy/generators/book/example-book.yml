@@ -30,7 +30,7 @@ section_names: [ "Part", "Chapter", "Section" ]
 
 toc:
   - { the_matter: frontmatter }
-  - { insert: "\\frontmatter*\n\\chapterstyle{frontmatter}", target: latex }
+  - { insert: '\frontmatter', target: latex }
   - { title: "Cover", src: 'cover.xhtml.erb', target: epub, layout: none, type: cover, linear: no }
   - { title: "Title Page", src: 'titlepage.xhtml.erb', target: epub, type: title-page }
   - { title: "Title Page", src: "titlepage.tex", target: latex }
@@ -45,7 +45,7 @@ toc:
   - { title: "Title Page", src: 'titlepage.xhtml.erb', target: mobi, type: text, class: title-page }
   - { title: "Contents", src: 'toc.xhtml.erb', target: mobi, type: toc }
   - { the_matter: mainmatter, section_number: 3  }
-  - { insert: "\\mainmatter*\n\\book{\\thetitle}\n\\setcounter{chapter}{0}\n\\chapterstyle{mainmatter}", target: latex }
+  - { insert: "\\mainmatter*\n\\book{\\thetitle}", target: latex }
   - { title: "Waiting for Death", src: 'book3.html', target: [ epub, mobi ], class: part-page }
   - { level: 2, title: "Text Samples", src: 'text-samples.md' }
   - { title: "The Dead Hand", src: 'book5.html', target: [ epub, mobi ], class: part-page }
@@ -56,7 +56,7 @@ toc:
   - { level: 1, section_name: "Appendix", section_number: 1 }
   - { title: "Further Comments", src: 'further-comments.tex' }
   - { the_matter: backmatter }
-  - { insert: "\\backmatter\n\\bookmarksetup{startatroot}\n\\chapterstyle{backmatter}", target: latex }
+  - { insert: '\backmatter', target: latex }
   - { title: "Glossary", src: 'glossary.md', target: [ epub, mobi ], type: glossary }
   - { title: "Glossary", src: 'glossary.tex', target: latex }
   - { title: "Acknowledgements", src: 'acknowledgements.tex', type: acknowledgements }

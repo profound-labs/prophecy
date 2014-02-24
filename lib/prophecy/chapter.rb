@@ -183,12 +183,17 @@ module Prophecy
     end
 
     def first_header_text
-      if @path
+      return nil unless @path
+      format ||= File.extname(@path)
+      case format
+      when '.tex'
+        str = IO.read(@path)
+        m = str.match(/\\chapter\*{,1}[{]([^}]+)[}]/)
+        m[1] if m
+      else
         doc = Nokogiri::HTML(self.to_html)
         h = doc.xpath("//*[name()='h1' or name()='h2' or name()='h3' or name()='h4']").first
         h.text.strip if h
-      else
-        nil
       end
     end
 
