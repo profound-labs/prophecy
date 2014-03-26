@@ -10,6 +10,7 @@ require 'cgi'
 require 'mime/types'
 require 'kramdown'
 require 'nokogiri'
+require 'roman-numerals'
 
 require "prophecy/version"
 require "prophecy/book"
