@@ -11,7 +11,7 @@ module Prophecy
       :assets_dir, :tex_dir, :markdown_dir, :xhtml_dir, :chapter_layout,
       :include_assets, :exclude_assets, :toc, :output_format, :bookid,
       :rights, :creator, :subject, :source, :contributors, :cover_image,
-      :date, :compile_name
+      :date, :compile_name, :show_chapter_name, :chapter_number_format
 
     def initialize(config)
       @config = config.clone
@@ -51,6 +51,8 @@ module Prophecy
       @contributors   = c['contributors']   || nil
       @cover_image    = c['cover_image']    || nil
       @date           = c['date']           || Time.now.strftime("%Y-%m-%d")
+      @show_chapter_name = c['show_chapter_name'] || nil
+      @chapter_number_format = c['chapter_number_format'] || nil
 
       @compile_name = "#{self.author}-#{self.title}-#{Time.now.strftime("%FT%T")}".gsub(/[^a-zA-Z0-9-]/, '-').gsub(/--*/, '-')
 

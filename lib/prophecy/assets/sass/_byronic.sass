@@ -13,6 +13,9 @@
 
 $contentFontFamily: 'SourceSansPro', 'Lucida Grande', 'DejaVu Sans', 'Bitstream Vera Sans', 'Tahoma', 'Palatino', 'Caecilia', sans-serif !default
 $contentHeaderFontFamily: 'SourceSansPro', 'Lucida Grande', 'DejaVu Sans', 'Bitstream Vera Sans', 'Tahoma', 'Palatino', 'Caecilia', sans-serif !default
+// Specify font for emphasis. This may be a different typeface from a
+// 'slanted' italics.
+$emphasisFontFamily: $contentFontFamily
 $titlePageHeaderFontFamily: 'ExistenceLight' !default
 
 // 1px wide 60% gray (#999) is just about visible on Kindle. Using 55%
@@ -33,6 +36,9 @@ $titlePageRuleWidth: 40px !default
   //vertical-align: baseline
   //color: $textColor
   //background-color: $textBgColor
+
+em, i
+  font-family: $emphasisFontFamily
 
 h1, h2, h3, h4, h5, h6
   font-weight: normal

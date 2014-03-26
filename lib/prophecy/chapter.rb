@@ -122,6 +122,8 @@ module Prophecy
       @prefix = config['prefix'] || nil
       @postfix = config['postfix'] || nil
       @insert = config['insert'] || nil
+      @show_chapter_name = config['show_chapter_name'] || self.book.show_chapter_name || nil
+      @chapter_number_format = config['chapter_number_format'] || self.book.chapter_number_format || nil
 
       if config['section_name']
         @@section_name[@level] = config['section_name']
@@ -192,7 +194,8 @@ module Prophecy
         m[1] if m
       else
         doc = Nokogiri::HTML(self.to_html)
-        h = doc.xpath("//*[name()='h1' or name()='h2' or name()='h3' or name()='h4']").first
+        h = doc.xpath("//h1").first
+        #h = doc.xpath("//*[name()='h1' or name()='h2' or name()='h3' or name()='h4']").first
         h.text.strip if h
       end
     end
@@ -239,6 +242,10 @@ module Prophecy
       else
         warn "Don't know how to render: #{@src}"
         raise "Error while rendering chapter"
+      end
+
+      if @show_chapter_name && self.mainmatter?
+        ret = "<h2 class=\"chapter-name\">#{self.chapter_name}</h2>\n" + ret
       end
 
       unless layout_path.nil?
@@ -338,6 +345,21 @@ module Prophecy
       ret
     end
 
+    def chapter_name
+      n = ''
+      case @chapter_number_format
+      when 'word'
+        n = itow(@section_number)
+      when 'arabic'
+        n = @section_number
+      when 'roman'
+        n = RomanNumerals.to_roman(@section_number)
+      else
+        n = @section_number
+      end
+      "Chapter #{n}"
+    end
+
     def frontmatter?
       @the_matter == 'frontmatter'
     end
@@ -385,6 +407,41 @@ module Prophecy
     def to_s
       [@title, @path].join(", ")
     end
+
+    # Opinionated conversion: over 100, chapter titles would be too
+    # long. It's also a good excuse for using a simple array.
+    def itow(i)
+      return i.to_s if i > 100
+
+      a = [ "Zero", "One", "Two", "Three", "Four", "Five", "Six",
+            "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve",
+            "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen",
+            "Eighteen", "Nineteen", "Twenty", "Twenty-one",
+            "Twenty-two", "Twenty-three", "Twenty-four", "Twenty-five",
+            "Twenty-six", "Twenty-seven", "Twenty-eight", "Twenty-nine",
+            "Thirty", "Thirty-one", "Thirty-two", "Thirty-three",
+            "Thirty-four", "Thirty-five", "Thirty-six", "Thirty-seven",
+            "Thirty-eight", "Thirty-nine", "Fourty", "Fourty-one",
+            "Fourty-two", "Fourty-three", "Fourty-four", "Fourty-five",
+            "Fourty-six", "Fourty-seven", "Fourty-eight", "Fourty-nine",
+            "Fifty", "Fifty-one", "Fifty-two", "Fifty-three",
+            "Fifty-four", "Fifty-five", "Fifty-six", "Fifty-seven",
+            "Fifty-eight", "Fifty-nine", "Sixty", "Sixty-one",
+            "Sixty-two", "Sixty-three", "Sixty-four", "Sixty-five",
+            "Sixty-six", "Sixty-seven", "Sixty-eight", "Sixty-nine",
+            "Seventy", "Seventy-one", "Seventy-two", "Seventy-three",
+            "Seventy-four", "Seventy-five", "Seventy-six",
+            "Seventy-seven", "Seventy-eight", "Seventy-nine", "Eighty",
+            "Eighty-one", "Eighty-two", "Eighty-three", "Eighty-four",
+            "Eighty-five", "Eighty-six", "Eighty-seven", "Eighty-eight",
+            "Eighty-nine", "Ninety", "Ninety-one", "Ninety-two",
+            "Ninety-three", "Ninety-four", "Ninety-five", "Ninety-six",
+            "Ninety-seven", "Ninety-eight", "Ninety-nine",
+            "One-hundred", ]
+
+      a[i.to_i]
+    end
+
   end
 
 end
