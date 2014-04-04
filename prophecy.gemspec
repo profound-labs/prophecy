@@ -32,7 +32,7 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency "compass", ">= 0.12.2"
   spec.add_runtime_dependency "kramdown", ">= 1.2.0"
   spec.add_runtime_dependency "nokogiri", ">= 1.6.0"
-  spec.add_runtime_dependency "roman-numerals", ">= 0.3.1"
+  spec.add_runtime_dependency "roman-numerals", ">= 0.3.0"
   spec.add_runtime_dependency "mime-types", ">= 1.25"
   spec.add_runtime_dependency "thor", "~> 0.18"
 
