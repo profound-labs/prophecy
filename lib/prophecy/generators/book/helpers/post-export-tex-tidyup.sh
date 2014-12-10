@@ -52,6 +52,8 @@ tee "$1".tidy.tex |\
 # === Converting to markdown ===
 pandoc -f latex -t markdown --no-wrap |\
 tee "$1".md |\
+# Remove ​, conversion artefact
+sed 's/​//g' |\
 # Remove <span> tags, these remain from removing the \textcolor and \textstyle commands.
 sed 's/<\/*span>//g' |\
 # Normalize bold and italics
