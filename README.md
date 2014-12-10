@@ -20,7 +20,7 @@ meditate on peace.
 
 [![Screencast demo][demo-jpg]](http://asciinema.org/a/5680)
 
-[demo-jpg]: http://profound-labs.github.io/images/screenshots/prophecy-screencast.jpg
+[demo-jpg]: http://profound-labs.github.io/projects/prophecy/prophecy-screencast.jpg
 
 Demo: [asciinema.org/a/5680](http://asciinema.org/a/5680)
 
