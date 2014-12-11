@@ -8,6 +8,8 @@ if [ -z "$1" ]; then
 fi
 
 cat "$1" |\
+# Replace {\textbackslash}{\textbackslash} with \\
+sed -e 's/[{]\\textbackslash[}][{]\\textbackslash[}] */\\\\\n/g' |\
 # Remove =\textcolor[model]{values}{...}=
 # Remove =\textcolor{color}{...}=
 # First with no inner braces, then up to three inner pair of braces, then just remove the command and leave the brace.
@@ -34,7 +36,9 @@ sed -e \
 's/[[]1E6D?[]]/ṭ/g;
 s/[[]1E47?[]]/ṇ/g;
 s/[[]1E45?[]]/ṅ/g;
+s/[[]1E41?[]]/ṁ/g;
 s/[[]1E43?[]]/ṃ/g;
+s/[[]1E0D?[]]/ḍ/g;
 s/[[]1E37?[]]/ḷ/g;' |\
 # TODO Replace non-breaking space and zero-width space.
 # Remove commands with empty braces
@@ -61,6 +65,8 @@ sed 's/\(\*\*[^\*]\+\)\*\* \+\*\*\([^\*]\+\*\*\)/\1 \2/g' |\
 sed 's/\(\*[^\*]\+\)\* \+\*\([^\*]\+\*\)/\1 \2/g' |\
 tee "$1".tidy.md |\
 # === Converting to LaTeX ===
-pandoc -f markdown -t latex |\
+pandoc -f markdown -t latex --no-wrap |\
+# Linebreaks
+sed 's/\\\\/&\n/g' |\
 # Remove double nbsp (tabs are exported as two escaped spaces from ODT).
 sed 's/~~//g' > "$1".md.tex
