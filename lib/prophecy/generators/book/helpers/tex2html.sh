@@ -3,9 +3,10 @@
 for i in ./tex/*.tex
 do
     sed -f sed_tex2uni $i |\
-    sed -f sed_chars |\
     # for dumb E-book readers, problematic characters with latin
-    sed -f sed_dumb_ebook > tmp/`basename $i`
+    # No longer necessary.
+    # sed -f sed_dumb_ebook |\
+    sed -f sed_chars > tmp/`basename $i`
 done
 
 for i in ./tmp/*.tex
