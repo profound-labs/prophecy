@@ -47,19 +47,23 @@ module Prophecy
     end
 
     def media_type
-      ret = MIME::Types.type_for(File.basename(@path)).first.to_s
-      if ret == ""
-        ext = File.extname(@path)
-        types = {
-          '.ncx' => 'application/x-dtbncx+xml',
-        }
-        if types.has_key?(ext)
-          ret = types[ext]
-        else
-          warn "Can't determine media type for: #{@path}"
-          raise "Unknown Media Type"
-        end
+      ret = ""
+      # first, use the known list
+      ext = File.extname(@path)
+      types = {
+        '.ncx' => 'application/x-dtbncx+xml',
+        '.ttf' => 'application/x-font-ttf',
+      }
+      if types.has_key?(ext)
+        ret = types[ext]
       end
+      # if not, ask from MIME::Types
+      ret = MIME::Types.type_for(File.basename(@path)).first.to_s if ret == ""
+      if ret == ""
+        warn "Can't determine media type for: #{@path}"
+        raise "Unknown Media Type"
+      end
+
       ret
     end
 

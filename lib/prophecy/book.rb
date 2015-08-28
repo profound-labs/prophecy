@@ -11,7 +11,8 @@ module Prophecy
       :assets_dir, :tex_dir, :markdown_dir, :xhtml_dir, :chapter_layout,
       :include_assets, :exclude_assets, :toc, :output_format, :bookid,
       :rights, :creator, :subject, :source, :contributors, :cover_image,
-      :date, :compile_name, :show_chapter_name, :chapter_number_format
+      :date, :compile_name, :show_chapter_name, :chapter_number_format,
+      :file_as
 
     def initialize(config)
       @config = config.clone
@@ -23,6 +24,7 @@ module Prophecy
       @subtitle       = c['subtitle']       || nil
       @author         = c['author']         || "The Author"
       @creator        = c['creator']        || @author
+      @file_as        = c['file_as']        || @author
       @publisher      = c['publisher']      || nil
       @publisher_atag = c['publisher_atag'] || nil
       @publisher_logo = c['publisher_logo'] || nil
@@ -237,9 +239,9 @@ module Prophecy
       case (self.output_format)
       when 'epub', 'mobi'
         inc = [
-          File.join(self.assets_dir, 'webfonts'),
-          File.join('.', 'images'),
-          File.join(self.assets_dir, 'stylesheets')
+          File.join(self.assets_dir, 'Fonts'),
+          File.join(self.assets_dir, 'Images'),
+          File.join(self.assets_dir, 'Styles')
         ]
       when 'latex'
         inc = [

@@ -65,8 +65,8 @@ module Prophecy
       }
 
       chapters_dir_for_output = {
-        'epub' => File.join('OEBPS', 'chapters'),
-        'mobi' => File.join('OEBPS', 'chapters'),
+        'epub' => File.join('OEBPS', 'Text'),
+        'mobi' => File.join('OEBPS', 'Text'),
         'latex' => 'chapters',
         'web' => 'chapters',
       }
@@ -152,7 +152,7 @@ module Prophecy
             h.children.select{|i| i.name != 'a'}.each{|s| t += s}
             @navpoints << {
               'text' => CGI.escapeHTML(t),
-              'src' => "chapters/#{@render_name}##{h.attributes['id']}",
+              'src' => "Text/#{@render_name}##{h.attributes['id']}",
               'playOrder' => @@playOrder,
               'level' => @level,
             }
@@ -161,7 +161,7 @@ module Prophecy
         else
           @navpoints << {
             'text' => @title,
-            'src' => "chapters/#{@render_name}",
+            'src' => "Text/#{@render_name}",
             'playOrder' => @@playOrder,
             'level' => @level,
           }
@@ -202,8 +202,8 @@ module Prophecy
 
     def to_guide_reference
       return "" if @type.nil?
-      ret = "<reference href='#{@href}' title=\"#{@title.gsub('"', "'")}\""
-      ret += " type='#{@type}'"
+      ret = "<reference href=\"#{@href}\" title=\"#{@title.gsub('"', "'")}\""
+      ret += " type=\"#{@type}\""
       ret += " />"
     end
 
@@ -297,8 +297,8 @@ module Prophecy
     end
 
     def to_spineitem
-      ret = "<itemref idref='#{self.idref}' "
-      ret += "linear='#{self.linear}'" unless self.linear.nil?
+      ret = "<itemref idref=\"#{self.idref}\" "
+      ret += "linear=\"#{self.linear}\"" unless self.linear.nil?
       ret += " />"
     end
 
@@ -320,7 +320,7 @@ module Prophecy
     end
 
     def to_toc_li
-      "<li><a href='../chapters/#{@render_name}'><span>#{@title}</span></a></li>"
+      "<li><a href='../Text/#{@render_name}'><span>#{@title}</span></a></li>"
     end
 
     def to_toc_tr
@@ -341,7 +341,7 @@ module Prophecy
         ret += "</td>\n"
         # Title
         ret += "<td class='title #{@the_matter}'>\n"
-        ret += "<a href='#{File.join('..', 'chapters', File.basename(nav['src']))}'><span>#{nav['text']}</span></a>\n"
+        ret += "<a href='#{File.join('..', 'Text', File.basename(nav['src']))}'><span>#{nav['text']}</span></a>\n"
         ret += "</td>\n"
         ret += "</tr>"
       end
