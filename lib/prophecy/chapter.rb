@@ -251,10 +251,13 @@ module Prophecy
       unless layout_path.nil?
         template = ERB.new(IO.read(layout_path))
         content = ret
-        template.result(binding)
-      else
-        ret
+        ret = template.result(binding)
       end
+
+      # remove empty attributes
+      ret.gsub!(/ *class=""/, "")
+
+      ret
     end
 
     def to_tex(format = nil, text = nil, layout_path = @layout_path)
