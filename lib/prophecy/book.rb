@@ -12,7 +12,7 @@ module Prophecy
       :include_assets, :exclude_assets, :toc, :output_format, :bookid,
       :rights, :creator, :subject, :source, :contributors, :cover_image,
       :date, :compile_name, :show_chapter_name, :chapter_number_format,
-      :file_as
+      :cover_credit, :file_as
 
     def initialize(config)
       @config = config.clone
@@ -52,6 +52,7 @@ module Prophecy
       @source         = c['source']         || nil
       @contributors   = c['contributors']   || nil
       @cover_image    = c['cover_image']    || nil
+      @cover_credit   = c['cover_credit']   || nil
       @date           = c['date']           || Time.now.strftime("%Y-%m-%d")
       @show_chapter_name = c['show_chapter_name'] || nil
       @chapter_number_format = c['chapter_number_format'] || nil

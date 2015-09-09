@@ -8,12 +8,16 @@
     <% unless book.uuid.nil? %><dc:identifier opf:scheme="UUID">urn:uuid:<%= book.uuid %></dc:identifier><% end %>
 
     <dc:title><%= book.title %></dc:title>
+    <% unless book.rights == "" %>
     <dc:rights><%= book.rights %></dc:rights>
+    <% else %>
+    <dc:rights />
+    <% end %>
 
-    <!-- BISAC Subject Headings List: http://www.bisg.org/what-we-do-0-136-bisac-subject-headings-list-major-subjects.php-->
+    <!-- BISAC Subject Headings List: https://www.bisg.org/bisac-subject-codes -->
     <% unless book.subject.nil? %><dc:subject><%= book.subject %></dc:subject><% end %>
 
-    <dc:creator opf:file-as="<%= book.creator %>" opf:role="aut"><%= book.creator %></dc:creator>
+    <dc:creator opf:file-as="<%= book.file_as %>" opf:role="aut"><%= book.creator %></dc:creator>
 
     <% unless book.source.nil? %><dc:source><%= book.source %></dc:source><% end %>
 

@@ -2,6 +2,10 @@
 # General Config
 # ==============
 
+title: "<%= title %>"
+author: "The Author"
+file_as: Munindo, Ajahn
+
 # The data in this file is shared between output formats.
 #
 # Add format-specific data in the following files, which will add to
@@ -9,19 +13,10 @@
 # epub_mobi.yml, epub.yml, mobi.yml, latex.yml
 
 # These are very minimal settings, for a more complete example see
-# example-book.yml
+# example-book.yml and book.yml.combined
 
-title: "<%= title %>"
-author: "The Author"
-date: <%= Time.now.strftime("%Y-%m-%d") %>
-
-# A general-purpose TOC. Formats will be converted, ERB templates will
-# be rendered.
-
-# The Contents page comes in a different sequence in EPUB and MOBI,
-# because of the book will open on "type: text" in the Kindle, and the
-# way the "Frontmatter" menu works in Kindle, that is, it includes the
-# contents before the item "type: toc".
+# See also:
+# epub_mobi.yml, epub.yml, mobi.yml, latex.yml
 
 toc:
   - { the_matter: frontmatter }
@@ -43,20 +38,14 @@ toc:
   - further-comments.markdown
   - { the_matter: backmatter }
   - { insert: '\backmatter', target: latex }
+  - { title: "Copyright", src: 'copyright.md.erb', type: copyright-page, target: [ epub, mobi ] }
   - glossary.md
 
 cover_image: "cover.jpg"
+cover_credit: Cover photo offered by The Person
 
-exclude_assets: [ "cover.xcf", ]
-
-# Either an ISBN or an UUID to identify the book.
-# If you don't have an ISBN, generate an UUID:
-# http://www.famkruithof.net/uuid/uuidgen
-
-# uuid: "000-000"
-isbn: "000-0-0000000-0-0"
 publisher: "The Publisher"
-publisher_atag: "<a href='http://thepublisher.org/' target='_blank'>www.thepublisher.org</a>"
 publisher_logo: "publisher-logo.jpg"
-book_atag: "<a href='http://thepublisher.org/thebookurl/' target='_blank'>www.thepublisher.org/thebookurl</a>"
 
+publisher_atag: "<a href='http://thepublisher.org/'>www.thepublisher.org</a>"
+book_atag: "<a href='http://thepublisher.org/thebookurl/'>www.thepublisher.org/thebookurl</a>"

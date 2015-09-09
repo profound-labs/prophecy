@@ -1,0 +1,4 @@
+
+# ISBN for printed copies
+isbn: "000-0-000000-00-0"
+date: <%= Time.now.strftime("%Y-%m-%d") %>

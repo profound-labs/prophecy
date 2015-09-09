@@ -1,4 +1,7 @@
 
+date: <%= Time.now.strftime("%Y-%m-%d") %>
+version: 'v1.0'
+
 # Epub and Mobi
 # =============
 
@@ -6,6 +9,9 @@ bookid: "ProphecyBookId"
 
 # ISBN for the ebook editions
 isbn: "000-0-000000-00-0"
+
+# Level 1, 2, 3
+#section_names: [ "", "", "" ]
 
 # BISAC Subject Headings List:
 # http://www.bisg.org/what-we-do-0-136-bisac-subject-headings-list-major-subjects.php
