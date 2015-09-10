@@ -53,6 +53,7 @@ module Prophecy
       types = {
         '.ncx' => 'application/x-dtbncx+xml',
         '.ttf' => 'application/x-font-ttf',
+        '.otf' => 'application/vnd.ms-opentype',
       }
       if types.has_key?(ext)
         ret = types[ext]
