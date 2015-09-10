@@ -4,7 +4,7 @@
 
 title: "<%= title %>"
 author: "The Author"
-file_as: Munindo, Ajahn
+file_as: Author, The
 
 # The data in this file is shared between output formats.
 #
@@ -38,8 +38,8 @@ toc:
   - further-comments.markdown
   - { the_matter: backmatter }
   - { insert: '\backmatter', target: latex }
-  - { title: "Copyright", src: 'copyright.md.erb', type: copyright-page, target: [ epub, mobi ] }
   - glossary.md
+  - { title: "Copyright", src: 'copyright.md.erb', type: copyright-page, target: [ epub, mobi ] }
 
 cover_image: "cover.jpg"
 cover_credit: Cover photo offered by The Person

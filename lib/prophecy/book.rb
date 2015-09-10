@@ -246,7 +246,7 @@ module Prophecy
         ]
       when 'latex'
         inc = [
-          File.join(self.assets_dir, 'fonts'),
+          File.join(self.assets_dir, 'Fonts'),
         ]
       end
 

@@ -5,11 +5,10 @@
 
 @font-face {
   font-family: 'ExistenceLight';
-  src: url("../webfonts/existence-light.ttf") format("truetype");
+  src: url("../Fonts/existence-light.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
-
 /* line 2, ../sass/_font-source-sans-pro.scss */
 .font-source-sans-pro {
   font-family: 'SourceSansPro';
@@ -17,39 +16,34 @@
 
 @font-face {
   font-family: 'SourceSansPro';
-  src: url("../webfonts/sourcesanspro-regular.ttf") format("truetype");
+  src: url("../Fonts/sourcesanspro-regular.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
-
 @font-face {
   font-family: 'SourceSansPro';
-  src: url("../webfonts/sourcesanspro-italic.ttf") format("truetype");
+  src: url("../Fonts/sourcesanspro-italic.ttf") format("truetype");
   font-weight: normal;
   font-style: italic;
 }
-
 @font-face {
   font-family: 'SourceSansPro';
-  src: url("../webfonts/sourcesanspro-bold.ttf") format("truetype");
+  src: url("../Fonts/sourcesanspro-bold.ttf") format("truetype");
   font-weight: bold;
   font-style: normal;
 }
-
 @font-face {
   font-family: 'SourceSansPro';
-  src: url("../webfonts/sourcesanspro-lightitalic.ttf") format("truetype");
+  src: url("../Fonts/sourcesanspro-lightitalic.ttf") format("truetype");
   font-weight: 300;
   font-style: italic;
 }
-
 @font-face {
   font-family: 'SourceSansPro';
-  src: url("../webfonts/sourcesanspro-light.ttf") format("truetype");
+  src: url("../Fonts/sourcesanspro-light.ttf") format("truetype");
   font-weight: 300;
   font-style: normal;
 }
-
 /* line 5, ../sass/_fontfaces.scss */
 .font-bold {
   font-weight: bold;
@@ -91,7 +85,7 @@
  *
  * Released under the Creative Commons Attribution License.
  * http://creativecommons.org/licenses/by/3.0/ */
-/* line 26, ../sass/_byronic.sass */
+/* line 29, ../sass/_byronic.sass */
 #content {
   font-family: "SourceSansPro", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", "Tahoma", "Palatino", "Caecilia", sans-serif;
   font-weight: normal;
@@ -101,21 +95,26 @@
   margin-right: 0;
 }
 
-/* line 37, ../sass/_byronic.sass */
+/* line 40, ../sass/_byronic.sass */
+em, i {
+  font-family: "SourceSansPro", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", "Tahoma", "Palatino", "Caecilia", sans-serif;
+}
+
+/* line 43, ../sass/_byronic.sass */
 h1, h2, h3, h4, h5, h6 {
   font-weight: normal;
   font-family: "SourceSansPro", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", "Tahoma", "Palatino", "Caecilia", sans-serif;
   page-break-after: avoid;
 }
 
-/* line 42, ../sass/_byronic.sass */
+/* line 48, ../sass/_byronic.sass */
 h1, h2 {
   text-align: left;
   text-transform: uppercase;
   padding-top: 10px;
 }
 
-/* line 49, ../sass/_byronic.sass */
+/* line 55, ../sass/_byronic.sass */
 h1 {
   font-size: 2em;
   margin: 0.5em 0 1em 0px;
@@ -127,17 +126,17 @@ h1 {
    * chapter-name (always contains the word "Chapter") and
    * chapter-number (as a roman numeral) */
 }
-/* line 60, ../sass/_byronic.sass */
+/* line 66, ../sass/_byronic.sass */
 h1 .chapter-name {
   font-weight: normal;
 }
-/* line 62, ../sass/_byronic.sass */
+/* line 68, ../sass/_byronic.sass */
 h1 .chapter-number {
   font-size: 0.8em;
   letter-spacing: 0.1em;
 }
 
-/* line 66, ../sass/_byronic.sass */
+/* line 72, ../sass/_byronic.sass */
 h2 {
   font-size: 1.5em;
   font-weight: 300;
@@ -146,14 +145,14 @@ h2 {
   letter-spacing: 1pt;
 }
 
-/* line 73, ../sass/_byronic.sass */
+/* line 79, ../sass/_byronic.sass */
 h3, h4 {
   font-weight: bold;
   text-transform: none;
   margin-bottom: 0.1em;
 }
 
-/* line 78, ../sass/_byronic.sass */
+/* line 84, ../sass/_byronic.sass */
 a {
   color: #333333;
 }
@@ -166,13 +165,13 @@ a {
  * h1 - Part I
  * h2 - part title
  * h3 - part subtitle */
-/* line 93, ../sass/_byronic.sass */
+/* line 99, ../sass/_byronic.sass */
 #content.title-page p,
 #content.part-page p {
   text-align: right;
   padding-right: 0px;
 }
-/* line 96, ../sass/_byronic.sass */
+/* line 102, ../sass/_byronic.sass */
 #content.title-page h1, #content.title-page h2, #content.title-page h3,
 #content.part-page h1,
 #content.part-page h2,
@@ -181,13 +180,13 @@ a {
   text-align: right;
   text-transform: none;
 }
-/* line 100, ../sass/_byronic.sass */
+/* line 106, ../sass/_byronic.sass */
 #content.title-page h1, #content.title-page h2,
 #content.part-page h1,
 #content.part-page h2 {
   letter-spacing: 1.5pt;
 }
-/* line 102, ../sass/_byronic.sass */
+/* line 108, ../sass/_byronic.sass */
 #content.title-page h1,
 #content.part-page h1 {
   font-size: 2em;
@@ -198,7 +197,7 @@ a {
   padding-right: 0px;
   line-height: 1em;
 }
-/* line 110, ../sass/_byronic.sass */
+/* line 116, ../sass/_byronic.sass */
 #content.title-page h2,
 #content.part-page h2 {
   font-size: 1.5em;
@@ -207,7 +206,7 @@ a {
   padding-top: 0.3em;
   padding-right: 0px;
 }
-/* line 116, ../sass/_byronic.sass */
+/* line 122, ../sass/_byronic.sass */
 #content.title-page h3,
 #content.part-page h3 {
   font-size: 1.2em;
@@ -215,7 +214,7 @@ a {
   padding-right: 0px;
 }
 
-/* line 121, ../sass/_byronic.sass */
+/* line 127, ../sass/_byronic.sass */
 div.title-page-rule {
   height: 40px;
   margin-left: 0;
@@ -225,7 +224,7 @@ div.title-page-rule {
   padding-right: 0px;
 }
 
-/* line 129, ../sass/_byronic.sass */
+/* line 135, ../sass/_byronic.sass */
 div.publisher-logo {
   float: right;
   clear: right;
@@ -234,22 +233,22 @@ div.publisher-logo {
   padding-bottom: 20px;
 }
 
-/* line 137, ../sass/_byronic.sass */
+/* line 143, ../sass/_byronic.sass */
 table.toc td.section {
   text-align: right;
   color: #333333;
   width: 5em;
 }
-/* line 142, ../sass/_byronic.sass */
+/* line 148, ../sass/_byronic.sass */
 table.toc td.title a {
   text-decoration: none;
   color: #1a1a1a;
 }
-/* line 145, ../sass/_byronic.sass */
+/* line 151, ../sass/_byronic.sass */
 table.toc td.title.frontmatter, table.toc td.title.backmatter {
   font-style: italic;
 }
-/* line 148, ../sass/_byronic.sass */
+/* line 154, ../sass/_byronic.sass */
 table.toc td.separator {
   width: 30px;
   text-align: center;
@@ -258,7 +257,7 @@ table.toc td.separator {
 }
 
 /* Epigraphs at the beginning of each chapter are in blockquotes */
-/* line 155, ../sass/_byronic.sass */
+/* line 161, ../sass/_byronic.sass */
 h1 + blockquote,
 blockquote.epigraph {
   margin-right: 1em;
@@ -267,7 +266,7 @@ blockquote.epigraph {
   font-size: 0.9em;
   font-style: italic;
 }
-/* line 163, ../sass/_byronic.sass */
+/* line 169, ../sass/_byronic.sass */
 h1 + blockquote p,
 blockquote.epigraph p {
   text-indent: 0;
@@ -275,13 +274,13 @@ blockquote.epigraph p {
   margin-top: 2pt;
 }
 
-/* line 168, ../sass/_byronic.sass */
+/* line 174, ../sass/_byronic.sass */
 blockquote {
   border-left: 1px solid #8c8c8c;
   padding: 0.3em 0 0.3em 1em;
 }
 
-/* line 172, ../sass/_byronic.sass */
+/* line 178, ../sass/_byronic.sass */
 #content.verse blockquote {
   font-style: normal;
   font-size: 1em;
@@ -289,7 +288,7 @@ blockquote {
 }
 
 /* The attribution of the blockquote */
-/* line 178, ../sass/_byronic.sass */
+/* line 184, ../sass/_byronic.sass */
 span.attribution,
 p.attribution {
   display: block;
@@ -302,7 +301,7 @@ p.attribution {
 
 /* ...which also contains an attribution-name, wrapping the name of
  * the person who made the quotation */
-/* line 189, ../sass/_byronic.sass */
+/* line 195, ../sass/_byronic.sass */
 span.attribution-name,
 p.attribution-name {
   text-align: left;
@@ -314,13 +313,13 @@ p.attribution-name {
 
 /* Outside of the content area you can address the style of the
  * running book and author headings. */
-/* line 199, ../sass/_byronic.sass */
+/* line 205, ../sass/_byronic.sass */
 #content-title {
   text-align: right;
   font-size: 0.8em;
 }
 
-/* line 207, ../sass/_byronic.sass */
+/* line 213, ../sass/_byronic.sass */
 p {
   text-align: justify;
 }
@@ -328,7 +327,7 @@ p {
 /* The first paragraph in the work has a class called "noindent" which
  * suppresses any paragraph indentation applied by default, but you
  * can override this. */
-/* line 217, ../sass/_byronic.sass */
+/* line 223, ../sass/_byronic.sass */
 h1 + p, h2 + p, h3 + p, h4 + p,
 h1 + blockquote + p,
 blockquote.epigraph + p,
@@ -341,62 +340,62 @@ p.noindent {
  * the class 'firstletter', which can be used for dropcaps. */
 /* Middlemarch contains a number of letters, which can be styled
  * differently. */
-/* line 235, ../sass/_byronic.sass */
+/* line 241, ../sass/_byronic.sass */
 #content p.letter {
   padding-left: 1.5em;
   padding-right: 0.5em;
 }
 
 /* Found in a letter */
-/* line 240, ../sass/_byronic.sass */
+/* line 246, ../sass/_byronic.sass */
 #content p.salutation {
   display: block;
   font-variant: small-caps;
 }
 
-/* line 244, ../sass/_byronic.sass */
+/* line 250, ../sass/_byronic.sass */
 #content p.closing {
   display: block;
   text-indent: 1em;
 }
 
-/* line 248, ../sass/_byronic.sass */
+/* line 254, ../sass/_byronic.sass */
 div.page-break {
   page-break-after: always;
 }
 
-/* line 251, ../sass/_byronic.sass */
+/* line 257, ../sass/_byronic.sass */
 .page-break-after {
   page-break-after: always;
 }
 
-/* line 254, ../sass/_byronic.sass */
+/* line 260, ../sass/_byronic.sass */
 .page-break-before {
   page-break-before: always;
 }
 
-/* line 257, ../sass/_byronic.sass */
+/* line 263, ../sass/_byronic.sass */
 pre {
   margin-top: 1em;
   margin-bottom: 1em;
 }
 
-/* line 261, ../sass/_byronic.sass */
+/* line 267, ../sass/_byronic.sass */
 .small {
   font-size: 0.9em;
 }
 
-/* line 264, ../sass/_byronic.sass */
+/* line 270, ../sass/_byronic.sass */
 .footnotesize {
   font-size: 0.8em;
 }
 
-/* line 267, ../sass/_byronic.sass */
+/* line 273, ../sass/_byronic.sass */
 .tiny {
   font-size: 0.7em;
 }
 
-/* line 270, ../sass/_byronic.sass */
+/* line 276, ../sass/_byronic.sass */
 .noborder {
   border: none;
 }
