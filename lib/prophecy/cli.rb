@@ -244,7 +244,7 @@ module Prophecy
             next
           end
         end
-        r = system "/bin/bash #{File.join(@book.assets_dir, 'helpers/tex2md.sh')} '#{File.expand_path(f)}' '#{dest}'"
+        r = system "/bin/bash #{File.join(@book.assets_dir, '..', 'generators', 'book', 'helpers', 'tex2md.sh')} '#{File.expand_path(f)}' '#{dest}'"
         warn "WARNING: tex2md.sh returned non-zero for #{f}" unless r
       end
     end
