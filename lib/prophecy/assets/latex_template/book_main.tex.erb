@@ -2,6 +2,7 @@
   final,
   pagePreset=largepage,
   babelLanguage=british,
+  %webversion,
 ]{anecdote}
 
 %\usepackage{mylayout}
@@ -12,9 +13,10 @@
 \title{<%= book.title %>}
 \subtitle{<%= book.subtitle %>}
 \author{<%= book.author %>}
+\publisher{<%= book.publisher %>}
 \date{<%= book.date %>}
 \editionInfo{<%= book.edition %>}
-\ISBN{<%= book.isbn %>}
+\ISBN{<%= book.print_isbn %>}
 
 %% === Load further packages ===
 
@@ -23,6 +25,12 @@
 % \hyphenation{}
 
 \begin{document}
+
+\ifwebversion
+\webcover{%
+\includegraphics[height=\paperheight]{./webcover.jpg}%
+}
+\fi
 
 <% book.chapters.each do |ch| %>
 <%= ch.to_chapterlist %>

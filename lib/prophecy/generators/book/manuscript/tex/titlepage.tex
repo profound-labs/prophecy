@@ -1,0 +1,27 @@
+\cleartorecto
+\thispagestyle{empty}
+\vspace*{5em}
+\newlength\titleLength
+\newlength\xheight
+
+{\centering
+
+\settowidth{\titleLength}{%
+  {\Large\chapterTitleFont\scshape\MakeLowercase{\thetitle}}%
+}
+
+{\Large\chapterTitleFont\scshape\MakeLowercase{\thetitle}}\\[0.3\baselineskip]
+\setlength{\xheight}{\heightof{X}}
+\raisebox{0.5\xheight}{\color[gray]{0.4}\rule{\titleLength}{0.1pt}}\\[0.3\baselineskip]
+{\itshape
+\thesubtitle}
+
+\vfill
+
+\theauthor
+
+\vspace*{5em}
+
+}
+
+

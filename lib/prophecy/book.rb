@@ -6,7 +6,7 @@ module Prophecy
     attr_reader :config, :chapters, :manifest
 
     attr_reader :title, :subtitle, :author, :publisher, :publisher_atag,
-      :publisher_logo, :book_atag, :isbn, :uuid, :version, :edition,
+                :publisher_logo, :book_atag, :print_isbn, :ebook_isbn, :uuid, :version, :edition,
       :lang, :lang_iso_639_2, :build_dir, :template_dir, :layouts_dir,
       :assets_dir, :tex_dir, :markdown_dir, :xhtml_dir, :chapter_layout,
       :include_assets, :exclude_assets, :toc, :output_format, :bookid,
@@ -29,7 +29,8 @@ module Prophecy
       @publisher_atag = c['publisher_atag'] || nil
       @publisher_logo = c['publisher_logo'] || nil
       @book_atag      = c['book_atag']      || nil
-      @isbn           = c['isbn']           || nil
+      @print_isbn     = c['print_isbn']     || nil
+      @ebook_isbn     = c['ebook_isbn']     || nil
       @uuid           = c['uuid']           || nil
       @version        = c['version']        || 'v0.1'
       @edition        = c['edition']        || nil

@@ -3,7 +3,7 @@
   <metadata xmlns:opf="http://www.idpf.org/2007/opf" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
     <!-- ISBN -->
-    <% unless book.isbn.nil? %><dc:identifier id="<%= book.bookid %>" opf:scheme="ISBN">urn:isbn:<%= book.isbn %></dc:identifier><% end %>
+    <% unless book.ebook_isbn.nil? %><dc:identifier id="<%= book.bookid %>" opf:scheme="ISBN">urn:isbn:<%= book.ebook_isbn %></dc:identifier><% end %>
     <!-- UUID generator: http://www.famkruithof.net/uuid/uuidgen -->
     <% unless book.uuid.nil? %><dc:identifier opf:scheme="UUID">urn:uuid:<%= book.uuid %></dc:identifier><% end %>
 

@@ -1,4 +1,15 @@
-
-# ISBN for printed copies
-isbn: "000-0-000000-00-0"
-date: <%= Time.now.strftime("%Y-%m-%d") %>
+toc:
+  - { insert: '\frontmatter' }
+  - titlepage.tex
+  - copyright.tex.erb
+  - { insert: "\\cleartorecto\n\\tableofcontents" }
+  - preface.md
+  - { insert: "\\mainmatter\n\\book{\\thetitle}" }
+  - like-a-boat.md
+  - nameless-labyrinth.markdown
+  - time-machine.markdown
+  - { insert: '\appendix' }
+  - further-comments.markdown
+  - { insert: '\backmatter' }
+  - glossary.md
+  - copyright-details.tex
