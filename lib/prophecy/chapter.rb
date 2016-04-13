@@ -327,18 +327,20 @@ module Prophecy
       ret = ""
       @navpoints.each do |nav|
         ret += "<tr>\n"
-        # Section name and number
-        ret += "<td class='section'>\n"
-        if self.mainmatter? && !@section_name.nil? && !@section_name.empty?
-          ret += "#{@section_name} #{@section_number}"
+        if @show_toc_chapter_numbers
+          # Section name and number
+          ret += "<td class='section'>\n"
+          if self.mainmatter? && !@section_name.nil? && !@section_name.empty?
+            ret += "#{@section_name} #{@section_number}"
+          end
+          ret += "</td>\n"
+          # Separator
+          ret += "<td class='separator'>"
+          if self.mainmatter? && !@section_name.nil? && !@section_name.empty?
+            ret += " &middot; "
+          end
+          ret += "</td>\n"
         end
-        ret += "</td>\n"
-        # Separator
-        ret += "<td class='separator'>"
-        if self.mainmatter? && !@section_name.nil? && !@section_name.empty?
-          ret += " &middot; "
-        end
-        ret += "</td>\n"
         # Title
         ret += "<td class='title #{@the_matter}'>\n"
         ret += "<a href='#{File.join('..', 'Text', File.basename(nav['src']))}'><span>#{nav['text']}</span></a>\n"

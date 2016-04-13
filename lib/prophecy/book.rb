@@ -56,6 +56,7 @@ module Prophecy
       @cover_credit   = c['cover_credit']   || nil
       @date           = c['date']           || Time.now.strftime("%Y-%m-%d")
       @show_chapter_name = c['show_chapter_name'] || nil
+      @show_toc_chapter_numbers = c['show_toc_chapter_numbers'] || true
       @chapter_number_format = c['chapter_number_format'] || nil
 
       @compile_name = "#{self.author}-#{self.title}-#{Time.now.strftime("%FT%T")}".gsub(/[^a-zA-Z0-9-]/, '-').gsub(/--*/, '-')
