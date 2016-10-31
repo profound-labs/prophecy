@@ -9,6 +9,7 @@ sed 's/\\verseref[{]\([^}]\+\)[}]/\1.\\\\/g' |\
 sed 's/\\thai[{]\([^}]\+\)[}]/\\emph{\1}/g' |\
 sed 's/\\speaker[{]\([^}]\+\)[}]/\\emph{\1}/g' |\
 sed 's/\\LaTeX/LaTeX/g' |\
+sed 's/\(\w\)"-\(\w\)/\1-\2/g' |\
 pandoc --smart --normalize --from=latex --to=markdown |\
 sed 's/\([^\\]\)\\$/\1\\\\/' > "$DEST"
 
