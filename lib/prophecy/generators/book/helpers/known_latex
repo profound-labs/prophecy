@@ -5,6 +5,7 @@
 \\emph
 \\ldots
 \\chapter
+\\section
 \\item
 \\footnote
 \\enlargethispage
@@ -38,3 +39,9 @@
 \\cleartoverso
 \\itshape
 \\par
+\\tocChapterNote
+\\QA
+\\begin{quote}
+\\end{quote}
+\\begin{packeditemize}
+\\end{packeditemize}
