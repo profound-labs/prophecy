@@ -327,7 +327,7 @@ module Prophecy
       ret = ""
       @navpoints.each do |nav|
         ret += "<tr>\n"
-        if @show_toc_chapter_numbers
+        if @book.show_toc_chapter_numbers
           # Section name and number
           ret += "<td class='section'>\n"
           if self.mainmatter? && !@section_name.nil? && !@section_name.empty?

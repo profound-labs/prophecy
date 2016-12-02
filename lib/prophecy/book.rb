@@ -12,7 +12,7 @@ module Prophecy
       :include_assets, :exclude_assets, :toc, :output_format, :bookid,
       :rights, :creator, :subject, :source, :contributors, :cover_image,
       :date, :compile_name, :show_chapter_name, :chapter_number_format,
-      :cover_credit, :file_as
+      :cover_credit, :file_as, :show_toc_chapter_numbers
 
     def initialize(config)
       @config = config.clone
